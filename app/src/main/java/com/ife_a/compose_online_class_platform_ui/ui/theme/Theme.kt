@@ -1,11 +1,10 @@
-package com.example.compose
+package com.ife_a.compose_online_class_platform_ui.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import com.example.ui.theme.AppTypography
 
 private val LightThemeColors = lightColors(
 
@@ -48,6 +47,7 @@ fun AppTheme(
     MaterialTheme(
         colors = colors,
         typography = AppTypography,
-        content = content
+        content = content,
+        shapes = Shapes
     )
 }

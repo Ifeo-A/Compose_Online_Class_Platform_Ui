@@ -1,4 +1,4 @@
-package com.example.compose
+package com.ife_a.compose_online_class_platform_ui.ui.theme
 import androidx.compose.ui.graphics.Color
 
 
@@ -8,6 +8,7 @@ val md_theme_light_primaryContainer = Color(0xFFcfe5ff)
 val md_theme_light_onPrimaryContainer = Color(0xFF001d36)
 val md_theme_light_secondary = Color(0xFF526070)
 val md_theme_light_onSecondary = Color(0xFFffffff)
+val md_theme_light_gray= Color(0xFFD5D5D5)
 val md_theme_light_secondaryContainer = Color(0xFFd6e4f7)
 val md_theme_light_onSecondaryContainer = Color(0xFF0f1d2a)
 val md_theme_light_tertiary = Color(0xFF6a5779)
@@ -19,7 +20,7 @@ val md_theme_light_errorContainer = Color(0xFFffdad4)
 val md_theme_light_onError = Color(0xFFffffff)
 val md_theme_light_onErrorContainer = Color(0xFF410001)
 val md_theme_light_background = Color(0xFFfdfcff)
-val md_theme_light_onBackground = Color(0xFF1a1c1e)
+val md_theme_light_onBackground = Color(0xFF363B3F)
 val md_theme_light_surface = Color(0xFFfdfcff)
 val md_theme_light_onSurface = Color(0xFF1a1c1e)
 val md_theme_light_surfaceVariant = Color(0xFFdfe3eb)

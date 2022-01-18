@@ -1,4 +1,4 @@
-package com.example.ui.theme
+package com.ife_a.compose_online_class_platform_ui.ui.theme
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
