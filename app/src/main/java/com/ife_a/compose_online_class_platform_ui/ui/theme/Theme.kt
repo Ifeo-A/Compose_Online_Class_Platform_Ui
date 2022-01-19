@@ -14,10 +14,8 @@ private val LightThemeColors = lightColors(
     onSecondary = md_theme_light_onSecondary,
     error = md_theme_light_error,
     onError = md_theme_light_onError,
-    background = md_theme_light_background,
-    onBackground = md_theme_light_onBackground,
+    background = md_theme_light_off_gray,
     surface = md_theme_light_surface,
-    onSurface = md_theme_light_onSurface,
 )
 private val DarkThemeColors = darkColors(
 
