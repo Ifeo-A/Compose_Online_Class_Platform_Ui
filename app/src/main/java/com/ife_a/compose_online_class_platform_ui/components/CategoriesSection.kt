@@ -4,12 +4,14 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
@@ -22,15 +24,17 @@ fun CategoriesSection(
 ){
     val context = LocalContext.current
 
-    AppTheme() {
+    AppTheme {
         Surface(
             color = MaterialTheme.colors.background
         ) {
-            Column() {
+            Column{
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(12.dp)
                 ) {
                     Text(text = "Categories", style = MaterialTheme.typography.h4)
                     TextButton(onClick = {viewAllClicked("View all")}) {

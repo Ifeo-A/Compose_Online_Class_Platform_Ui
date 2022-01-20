@@ -14,16 +14,14 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
-import com.ife_a.compose_online_class_platform_ui.ui.theme.Shapes
-import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_gray
-import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_secondary
+import com.ife_a.compose_online_class_platform_ui.ui.theme.*
 
 @Preview(name = "Top bar", widthDp = 300)
 @Composable
@@ -77,7 +75,7 @@ fun SearchBar(
 
     AppTheme {
         Surface(
-            color = MaterialTheme.colors.background,
+            color = md_theme_light_onPrimary,
             shape = Shapes.large,
         ) {
             Row(
@@ -86,6 +84,7 @@ fun SearchBar(
             ) {
                 TextField(
                     value = searchValue,
+                    colors = TextFieldDefaults.textFieldColors(textColor = md_theme_light_secondary),
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Outlined.Search,
@@ -126,7 +125,7 @@ fun SearchBarBasic(
     onValueChange: (String) -> Unit = {}
 ) {
 
-    var placeHolderText by rememberSaveable { mutableStateOf(placeholder) }
+    val placeHolderText by rememberSaveable { mutableStateOf(placeholder) }
 
     AppTheme {
         Surface(
