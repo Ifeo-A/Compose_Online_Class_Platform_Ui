@@ -21,6 +21,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.ife_a.compose_online_class_platform_ui.ui.theme.*
 
 @Preview(name = "Top bar", widthDp = 300)
@@ -92,7 +93,8 @@ fun SearchBar(
                             modifier = Modifier.width(50.dp)
                         )
                     },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth(),
                     onValueChange = onValueChange,
                     placeholder = { Text(placeholder) },
                     keyboardOptions = KeyboardOptions(
