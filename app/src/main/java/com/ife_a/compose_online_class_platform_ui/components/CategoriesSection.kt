@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ife_a.compose_online_class_platform_ui.components.chip.MyChip
 import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
 
 @Preview(name = "Categories Section", widthDp = 300)
