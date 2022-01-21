@@ -3,6 +3,7 @@ package com.ife_a.compose_online_class_platform_ui.components.buttons
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
@@ -27,7 +28,7 @@ fun MyIconButton(
         modifier = Modifier.size(36.dp)
     ) {
         Row() {
-            androidx.compose.material.IconButton(onClick = imageButtonClicked) {
+            IconButton(onClick = imageButtonClicked) {
                 Icon(
                     imageVector = icon,
                     contentDescription = "",
