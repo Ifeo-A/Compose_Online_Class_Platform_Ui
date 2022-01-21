@@ -13,13 +13,16 @@ import androidx.compose.material.icons.outlined.PersonOutline
 import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.material.icons.outlined.StarOutline
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.layout.AlignmentLine
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -49,7 +52,7 @@ val listOfImages = listOf(
     "https://unsplash.com/photos/UKEq4ompWow/download?force=true&w=640",
 )
 
-@Preview(showBackground = true, widthDp = 400)
+@Preview(showBackground = false, widthDp = 400)
 @Composable
 fun ClassItem(
     classDataItem: ClassDataItem = ClassDataItem(
@@ -61,73 +64,100 @@ fun ClassItem(
         isFavorite = false
     )
 ) {
-
     Card(
         shape = ShapesV2.large,
         backgroundColor = md_theme_light_onPrimary,
-        modifier = Modifier.size(width = 300.dp, height = 300.dp)
+        modifier = Modifier
+            .size(width = 300.dp, height = 340.dp)
+            .padding(end = 14.dp),
+        elevation = 4.dp
     ) {
         Column() {
-            Image(
-                painter = rememberImagePainter(
-                    data = listOfImages.random(),
-                    builder = {
-                        crossfade(true)
-                    }
-                ),
-                modifier = Modifier
-                    .fillMaxWidth(),
-                contentDescription = null,
-                contentScale = ContentScale.FillWidth
-            )
-            //Students and duration
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-                Row() {
-                    Image(imageVector = Icons.Outlined.PersonOutline, contentDescription = null)
-                    Text(text = "${classDataItem.noOfStudents} students")
-                }
-                Row() {
-                    Image(imageVector = Icons.Outlined.PlayArrow, contentDescription = null)
-                    Text(text = getPlayTimeFromMillis(classDataItem.classDuration))
 
-                }
+            Row(
+                modifier = Modifier
+                    .weight(1f),
+            ) {
+                Image(
+                    painter = rememberImagePainter(
+                        data = listOfImages.random(),
+                        builder = {
+                            crossfade(300)
+                        }
+                    ),
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop
+                )
             }
 
-            // Class title
-            Text(
-                text = classDataItem.classTitle,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                fontWeight = FontWeight.Bold
-            )
-            // Class teacher and favourited icon
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
+            Column(
+                verticalArrangement = Arrangement.SpaceEvenly,
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp)
+                    .weight(1f)
             ) {
-                Text(text = classDataItem.classTeacher)
-                if (classDataItem.isFavorite) {
-                    Image(
-                        imageVector = Icons.Filled.Star,
-                        contentDescription = null,
-                        colorFilter = ColorFilter.tint(
-                            Color.Blue
+                //Students and duration
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Image(imageVector = Icons.Outlined.PersonOutline, contentDescription = null)
+                        Text(text = "${classDataItem.noOfStudents} students")
+                    }
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Image(imageVector = Icons.Outlined.PlayArrow, contentDescription = null)
+                        Text(
+                            text = getPlayTimeFromMillis(classDataItem.classDuration),
+                            textAlign = TextAlign.End
                         )
-                    )
-                } else {
-                    Image(
-                        imageVector = Icons.Filled.StarOutline,
-                        contentDescription = null
-                    )
+
+                    }
+                }
+                // Class title
+                Text(
+                    text = classDataItem.classTitle,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    fontWeight = FontWeight.Bold
+                )
+                // Class teacher and favourited icon
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            start = 0.dp,
+                            top = 18.dp,
+                            end = 0.dp,
+                            bottom = 0.dp
+                        )
+                ) {
+                    Text(text = classDataItem.classTeacher)
+                    if (classDataItem.isFavorite) {
+                        Image(
+                            imageVector = Icons.Filled.Star,
+                            contentDescription = null,
+                            colorFilter = ColorFilter.tint(
+                                Color.Blue
+                            )
+                        )
+                    } else {
+                        Image(
+                            imageVector = Icons.Filled.StarOutline,
+                            contentDescription = null
+                        )
+                    }
                 }
             }
         }
     }
-
 }
 

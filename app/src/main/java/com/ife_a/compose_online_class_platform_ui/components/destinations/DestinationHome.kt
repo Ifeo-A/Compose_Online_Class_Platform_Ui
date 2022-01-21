@@ -1,9 +1,6 @@
 package com.ife_a.compose_online_class_platform_ui.components.destinations
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -14,13 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.statusBarsPadding
-import com.ife_a.compose_online_class_platform_ui.components.CategoriesSection
-import com.ife_a.compose_online_class_platform_ui.components.ClassDataItem
-import com.ife_a.compose_online_class_platform_ui.components.ClassItem
-import com.ife_a.compose_online_class_platform_ui.components.MyTopBar
+import com.ife_a.compose_online_class_platform_ui.components.*
 import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
 import com.ife_a.compose_online_class_platform_ui.utils.repeat
 import com.ife_a.compose_online_class_platform_ui.utils.toast
@@ -50,7 +43,7 @@ fun DestinationHome() {
             classTeacher = "Lindsey Donin",
             isFavorite = false
         )
-    )
+    ).repeat(4)
 
     ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
         val scrollState = rememberScrollState()
@@ -69,16 +62,16 @@ fun DestinationHome() {
                     ) {
                         MyTopBar()
                         CategoriesSection(
-                            categories = categories,
-                            viewAllClicked = {
-                                toast(
-                                    context = context,
-                                    text = "$it clicked"
-                                )
-                            }
-                        )
+                            categories = categories
+                        ) {
+                            toast(
+                                context = context,
+                                text = "$it clicked"
+                            )
+                        }
                         LazyRow(
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier
+                                .fillMaxWidth()
                         ){
                             items(items = classDataItems){
                                 classDataItems.forEach { classDataItem ->
