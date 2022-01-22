@@ -15,12 +15,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ife_a.compose_online_class_platform_ui.components.chip.MyChip
+import com.ife_a.compose_online_class_platform_ui.components.headers.LazyRowHeader
 
 @Preview(name = "Categories Section", widthDp = 300)
 @Composable
 fun CategoriesSection(
     categories: List<String> = listOf("👋🏼 hello".repeat(3)),
-    viewAllClicked: (buttonText: String) -> Unit = {}
+    viewAllButtonClicked: (buttonText: String) -> Unit = {}
 ){
     val context = LocalContext.current
 
@@ -29,18 +30,10 @@ fun CategoriesSection(
         modifier = Modifier.padding(vertical = 30.dp)
     ) {
         Column{
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(12.dp)
-            ) {
-                Text(text = "Categories", style = MaterialTheme.typography.h4)
-                TextButton(onClick = {viewAllClicked("View all")}) {
-                    Text(text = "View all")
-                }
-            }
+            LazyRowHeader(
+                headerText = "Categories",
+                viewAllButtonClicked = viewAllButtonClicked
+            )
             LazyRow{
                 items(items = categories){ text ->
                     MyChip(text = text){
@@ -54,5 +47,4 @@ fun CategoriesSection(
             }
         }
     }
-
 }

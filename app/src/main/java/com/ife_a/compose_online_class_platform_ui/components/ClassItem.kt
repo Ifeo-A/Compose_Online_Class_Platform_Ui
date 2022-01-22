@@ -1,25 +1,19 @@
 package com.ife_a.compose_online_class_platform_ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarOutline
 import androidx.compose.material.icons.outlined.PersonOutline
 import androidx.compose.material.icons.outlined.PlayArrow
-import androidx.compose.material.icons.outlined.StarOutline
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.layout.AlignmentLine
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -32,7 +26,7 @@ import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onPrim
 import com.ife_a.compose_online_class_platform_ui.utils.getPlayTimeFromMillis
 
 
-data class ClassDataItem(
+data class ClassDetails(
     val imageSrc: String = "https://unsplash.com/photos/F8t2VGnI47I/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MjN8fGNsYXNzfGVufDB8fHx8MTY0Mjc2MjAzOQ&force=true&w=640",
     val noOfStudents: Int = 0,
     val classDuration: Long = 0L,
@@ -55,7 +49,7 @@ val listOfImages = listOf(
 @Preview(showBackground = false, widthDp = 400)
 @Composable
 fun ClassItem(
-    classDataItem: ClassDataItem = ClassDataItem(
+    classDetails: ClassDetails = ClassDetails(
         imageSrc = "",
         noOfStudents = 0,
         classDuration = 0,
@@ -73,7 +67,6 @@ fun ClassItem(
         elevation = 4.dp
     ) {
         Column() {
-
             Row(
                 modifier = Modifier
                     .weight(1f),
@@ -107,14 +100,14 @@ fun ClassItem(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(imageVector = Icons.Outlined.PersonOutline, contentDescription = null)
-                        Text(text = "${classDataItem.noOfStudents} students")
+                        Text(text = "${classDetails.noOfStudents} students")
                     }
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(imageVector = Icons.Outlined.PlayArrow, contentDescription = null)
                         Text(
-                            text = getPlayTimeFromMillis(classDataItem.classDuration),
+                            text = getPlayTimeFromMillis(classDetails.classDuration),
                             textAlign = TextAlign.End
                         )
 
@@ -122,7 +115,7 @@ fun ClassItem(
                 }
                 // Class title
                 Text(
-                    text = classDataItem.classTitle,
+                    text = classDetails.classTitle,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                     fontWeight = FontWeight.Bold
@@ -140,8 +133,8 @@ fun ClassItem(
                             bottom = 0.dp
                         )
                 ) {
-                    Text(text = classDataItem.classTeacher)
-                    if (classDataItem.isFavorite) {
+                    Text(text = classDetails.classTeacher)
+                    if (classDetails.isFavorite) {
                         Image(
                             imageVector = Icons.Filled.Star,
                             contentDescription = null,
