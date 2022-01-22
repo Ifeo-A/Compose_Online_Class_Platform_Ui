@@ -32,7 +32,7 @@ fun MyTopBar(
         ) {
             Column(
                 modifier = Modifier
-                    .padding(start = 10.dp, top = 30.dp, end = 10.dp, bottom = 20.dp)
+                    .padding(start = 10.dp, top = 30.dp, end = 10.dp, bottom = 30.dp)
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,

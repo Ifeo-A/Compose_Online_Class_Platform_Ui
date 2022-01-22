@@ -1,19 +1,17 @@
 package com.ife_a.compose_online_class_platform_ui.components.destinations
 
-import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.google.accompanist.insets.ProvideWindowInsets
-import com.google.accompanist.insets.statusBarsPadding
-import com.ife_a.compose_online_class_platform_ui.components.*
-import com.ife_a.compose_online_class_platform_ui.components.searchBar.ClassList
+import com.ife_a.compose_online_class_platform_ui.components.CategoriesSection
+import com.ife_a.compose_online_class_platform_ui.components.ClassDetails
+import com.ife_a.compose_online_class_platform_ui.components.ClassesSection
+import com.ife_a.compose_online_class_platform_ui.components.MyTopBar
 import com.ife_a.compose_online_class_platform_ui.components.searchBar.ClassListData
 import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
 import com.ife_a.compose_online_class_platform_ui.utils.repeat
@@ -70,37 +68,23 @@ fun DestinationHome() {
             ProvideWindowInsets {
                 Surface(
                     color = MaterialTheme.colors.background,
-                    modifier = Modifier
-                        .statusBarsPadding()
-                        .fillMaxSize()
                 ) {
-                    Column(
-                        modifier = Modifier
-                            .statusBarsPadding()
-                    ) {
-                        MyTopBar()
-                        CategoriesSection(
-                            categories = categories
-                        ) {
-                            toast(
-                                context = context,
-                                text = "$it clicked"
-                            )
+                    LazyColumn {
+                        item {
+                            MyTopBar()
+                            CategoriesSection(
+                                categories = categories
+                            ) {
+                                toast(
+                                    context = context,
+                                    text = "$it clicked"
+                                )
+                            }
+                            ClassesSection(listOfClassListData)
                         }
-                        ClassesSection(listOfClassListData)
                     }
                 }
             }
-        }
-    }
-}
-
-@Preview(showBackground = true, heightDp = 800)
-@Composable
-fun ClassesSection(listOfClassListData: List<ClassListData> = listOf()) {
-    LazyColumn {
-        items(items = listOfClassListData) { item: ClassListData ->
-            ClassList(classListData = item)
         }
     }
 }
