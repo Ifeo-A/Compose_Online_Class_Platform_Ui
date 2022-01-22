@@ -8,10 +8,13 @@ import com.ife_a.compose_online_class_platform_ui.components.searchBar.ClassList
 
 @Preview(showBackground = true, heightDp = 800)
 @Composable
-fun ClassesSection(listOfClassListData: List<ClassListData> = listOf()) {
-    Column{
+fun ClassesSection(
+    listOfClassListData: List<ClassListData> = listOf(),
+    classListItemClicked: (classId: String) -> Unit = {}
+) {
+    Column {
         listOfClassListData.forEach {
-            ClassList(classListData = it)
+            ClassList(classListData = it, classItemClicked = classListItemClicked)
         }
     }
 }

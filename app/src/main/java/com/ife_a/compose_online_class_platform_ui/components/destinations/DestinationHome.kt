@@ -1,7 +1,6 @@
 package com.ife_a.compose_online_class_platform_ui.components.destinations
 
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -14,7 +13,6 @@ import com.ife_a.compose_online_class_platform_ui.components.ClassesSection
 import com.ife_a.compose_online_class_platform_ui.components.MyTopBar
 import com.ife_a.compose_online_class_platform_ui.components.searchBar.ClassListData
 import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
-import com.ife_a.compose_online_class_platform_ui.utils.repeat
 import com.ife_a.compose_online_class_platform_ui.utils.toast
 
 @Composable
@@ -38,32 +36,51 @@ fun DestinationHome() {
             headerTitle = "Featured classes",
             classDetails = listOf(
                 ClassDetails(
+                    classId = "apple",
                     imageSrc = "",
                     noOfStudents = 0,
                     classDuration = 3_600_000 + 1_800_000, //1hour in millis + 30mins in millis
                     classTitle = "Productivity Masterclass -Principles and Tools to Boost Your Productivity",
                     classTeacher = "Lindsey Donin",
                     isFavorite = false
-                )
-            ).repeat(4)
+                ),
+                ClassDetails(
+                    classId = "ball",
+                    imageSrc = "",
+                    noOfStudents = 0,
+                    classDuration = 3_600_000 + 1_800_000, //1hour in millis + 30mins in millis
+                    classTitle = "Productivity Masterclass -Principles and Tools to Boost Your Productivity",
+                    classTeacher = "Lindsey Donin",
+                    isFavorite = false
+                ),
+            )
         ),
         ClassListData(
             headerTitle = "Popular classes",
             classDetails = listOf(
                 ClassDetails(
+                    classId = "cat",
                     imageSrc = "",
                     noOfStudents = 0,
                     classDuration = 3_600_000 + 1_800_000, //1hour in millis + 30mins in millis
                     classTitle = "Productivity Masterclass -Principles and Tools to Boost Your Productivity",
                     classTeacher = "Lindsey Donin",
                     isFavorite = false
-                )
-            ).repeat(4)
+                ),
+                ClassDetails(
+                    classId = "dog",
+                    imageSrc = "",
+                    noOfStudents = 0,
+                    classDuration = 3_600_000 + 1_800_000, //1hour in millis + 30mins in millis
+                    classTitle = "Productivity Masterclass -Principles and Tools to Boost Your Productivity",
+                    classTeacher = "Lindsey Donin",
+                    isFavorite = false
+                ),
+            )
         )
     )
 
     ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
-        val scrollState = rememberScrollState()
         AppTheme {
             ProvideWindowInsets {
                 Surface(
@@ -73,14 +90,20 @@ fun DestinationHome() {
                         item {
                             MyTopBar()
                             CategoriesSection(
-                                categories = categories
-                            ) {
-                                toast(
-                                    context = context,
-                                    text = "$it clicked"
-                                )
-                            }
-                            ClassesSection(listOfClassListData)
+                                categories = categories,
+                                viewAllButtonClicked = {
+                                    toast(
+                                        context = context,
+                                        text = "$it clicked"
+                                    )
+                                }
+                            )
+                            ClassesSection(
+                                listOfClassListData = listOfClassListData,
+                                classListItemClicked = {
+                                    println("Class item with id $it clicked")
+                                }
+                            )
                         }
                     }
                 }

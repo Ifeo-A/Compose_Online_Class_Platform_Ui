@@ -17,7 +17,10 @@ data class ClassListData(
 )
 
 @Composable
-fun ClassList(classListData: ClassListData) {
+fun ClassList(
+    classListData: ClassListData,
+    classItemClicked: (classId: String) -> Unit
+) {
     LazyRowHeader(
         headerText = classListData.headerTitle
     )
@@ -27,10 +30,11 @@ fun ClassList(classListData: ClassListData) {
             .padding(bottom = 30.dp)
 
     ) {
-        items(items = classListData.classDetails) {
-            classListData.classDetails.forEach { classDetails ->
-                ClassItem(classDetails)
-            }
+        items(items = classListData.classDetails) { classDetails ->
+            ClassItem(
+                classDetails = classDetails,
+                onclick = classItemClicked
+            )
         }
     }
 }

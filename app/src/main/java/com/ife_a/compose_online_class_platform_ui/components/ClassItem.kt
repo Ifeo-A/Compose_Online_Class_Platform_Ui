@@ -1,6 +1,7 @@
 package com.ife_a.compose_online_class_platform_ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -27,6 +28,7 @@ import com.ife_a.compose_online_class_platform_ui.utils.getPlayTimeFromMillis
 
 
 data class ClassDetails(
+    val classId: String,
     val imageSrc: String = "https://unsplash.com/photos/F8t2VGnI47I/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MjN8fGNsYXNzfGVufDB8fHx8MTY0Mjc2MjAzOQ&force=true&w=640",
     val noOfStudents: Int = 0,
     val classDuration: Long = 0L,
@@ -50,20 +52,23 @@ val listOfImages = listOf(
 @Composable
 fun ClassItem(
     classDetails: ClassDetails = ClassDetails(
+        classId = "",
         imageSrc = "",
         noOfStudents = 0,
         classDuration = 0,
         classTitle = "",
         classTeacher = "",
         isFavorite = false
-    )
+    ),
+    onclick: (classId: String)->Unit = {}
 ) {
     Card(
         shape = ShapesV2.large,
         backgroundColor = md_theme_light_onPrimary,
         modifier = Modifier
             .size(width = 300.dp, height = 340.dp)
-            .padding(end = 14.dp),
+            .padding(end = 14.dp)
+            .clickable { onclick(classDetails.classId) },
         elevation = 4.dp
     ) {
         Column() {
