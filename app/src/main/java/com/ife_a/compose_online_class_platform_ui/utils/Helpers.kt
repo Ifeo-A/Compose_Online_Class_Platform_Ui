@@ -29,7 +29,6 @@ fun <T> List<T>.repeat(times: Int): List<T>{
 
 fun getPlayTimeFromMillis(millis: Long): String{
 
-
     val duration = millis / 1000
     val hours = duration / 3600
     val minutes = (duration - hours *3600 ) / 60

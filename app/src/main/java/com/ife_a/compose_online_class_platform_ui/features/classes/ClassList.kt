@@ -1,4 +1,4 @@
-package com.ife_a.compose_online_class_platform_ui.components.searchBar
+package com.ife_a.compose_online_class_platform_ui.features.classes
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -6,23 +6,29 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ife_a.compose_online_class_platform_ui.components.ClassDetails
-import com.ife_a.compose_online_class_platform_ui.components.ClassItem
 import com.ife_a.compose_online_class_platform_ui.components.headers.LazyRowHeader
+import com.ife_a.compose_online_class_platform_ui.utils.listOfClassDetailsSample
 
 data class ClassListData(
     var headerTitle: String = "",
-    var classDetails: List<ClassDetails>
+    var classDetails: List<ClassItemData>
 )
 
+@Preview
 @Composable
 fun ClassList(
-    classListData: ClassListData,
-    classItemClicked: (classId: String) -> Unit
+    classListData: ClassListData = ClassListData(
+        headerTitle = "Header title",
+        classDetails = listOfClassDetailsSample
+    ),
+    classItemClicked: (classId: String) -> Unit = {},
+    viewAllButtonClicked: (sectionTitle: String) -> Unit = {}
 ) {
     LazyRowHeader(
-        headerText = classListData.headerTitle
+        headerText = classListData.headerTitle,
+        viewAllButtonClicked = viewAllButtonClicked
     )
     LazyRow(
         modifier = Modifier
@@ -32,7 +38,7 @@ fun ClassList(
     ) {
         items(items = classListData.classDetails) { classDetails ->
             ClassItem(
-                classDetails = classDetails,
+                classItemData = classDetails,
                 onclick = classItemClicked
             )
         }

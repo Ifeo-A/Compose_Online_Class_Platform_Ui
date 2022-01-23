@@ -13,10 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-@Preview(showBackground = true, name = "Lazy row header", widthDp = 300)
+@Preview(showBackground = true)
 @Composable
 fun LazyRowHeader(
-    headerText: String = "",
+    headerText: String = "Header text",
     buttonText: String = "View all",
     viewAllButtonClicked: (buttonText: String) -> Unit = {}
 ){
@@ -28,7 +28,7 @@ fun LazyRowHeader(
             .padding(12.dp)
     ) {
         Text(text = headerText, style = MaterialTheme.typography.h4)
-        TextButton(onClick = {viewAllButtonClicked(buttonText)}) {
+        TextButton(onClick = {viewAllButtonClicked(headerText)}) {
             Text(text = "View all")
         }
     }

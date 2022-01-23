@@ -8,77 +8,19 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.ife_a.compose_online_class_platform_ui.components.CategoriesSection
-import com.ife_a.compose_online_class_platform_ui.components.ClassDetails
 import com.ife_a.compose_online_class_platform_ui.components.ClassesSection
 import com.ife_a.compose_online_class_platform_ui.components.MyTopBar
-import com.ife_a.compose_online_class_platform_ui.components.searchBar.ClassListData
 import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
+import com.ife_a.compose_online_class_platform_ui.utils.listOfCategoryItemDataSample
+import com.ife_a.compose_online_class_platform_ui.utils.listOfClassListDataSample
 import com.ife_a.compose_online_class_platform_ui.utils.toast
 
 @Composable
 fun DestinationHome() {
     val context = LocalContext.current
 
-    val categories = listOf(
-        "🎨 Design",
-        "👨‍🎨 Art",
-        "‍🖥 Programming",
-        "💻 Marketing",
-        "📝 Writing",
-        "🗿 History",
-        "🧮 Maths",
-        "🧑🏽‍ Science",
-        "‍📈 Statistics"
-    )
-
-    val listOfClassListData = listOf(
-        ClassListData(
-            headerTitle = "Featured classes",
-            classDetails = listOf(
-                ClassDetails(
-                    classId = "apple",
-                    imageSrc = "",
-                    noOfStudents = 0,
-                    classDuration = 3_600_000 + 1_800_000, //1hour in millis + 30mins in millis
-                    classTitle = "Productivity Masterclass -Principles and Tools to Boost Your Productivity",
-                    classTeacher = "Lindsey Donin",
-                    isFavorite = false
-                ),
-                ClassDetails(
-                    classId = "ball",
-                    imageSrc = "",
-                    noOfStudents = 0,
-                    classDuration = 3_600_000 + 1_800_000, //1hour in millis + 30mins in millis
-                    classTitle = "Productivity Masterclass -Principles and Tools to Boost Your Productivity",
-                    classTeacher = "Lindsey Donin",
-                    isFavorite = false
-                ),
-            )
-        ),
-        ClassListData(
-            headerTitle = "Popular classes",
-            classDetails = listOf(
-                ClassDetails(
-                    classId = "cat",
-                    imageSrc = "",
-                    noOfStudents = 0,
-                    classDuration = 3_600_000 + 1_800_000, //1hour in millis + 30mins in millis
-                    classTitle = "Productivity Masterclass -Principles and Tools to Boost Your Productivity",
-                    classTeacher = "Lindsey Donin",
-                    isFavorite = false
-                ),
-                ClassDetails(
-                    classId = "dog",
-                    imageSrc = "",
-                    noOfStudents = 0,
-                    classDuration = 3_600_000 + 1_800_000, //1hour in millis + 30mins in millis
-                    classTitle = "Productivity Masterclass -Principles and Tools to Boost Your Productivity",
-                    classTeacher = "Lindsey Donin",
-                    isFavorite = false
-                ),
-            )
-        )
-    )
+    val categories = listOfCategoryItemDataSample
+    val listOfClassListData = listOfClassListDataSample
 
     ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
         AppTheme {
@@ -94,14 +36,29 @@ fun DestinationHome() {
                                 viewAllButtonClicked = {
                                     toast(
                                         context = context,
-                                        text = "$it clicked"
+                                        text = "View all $it clicked"
+                                    )
+                                },
+                                categoryClicked = {
+                                    toast(
+                                        context = context,
+                                        text = "Category $it clicked"
                                     )
                                 }
                             )
                             ClassesSection(
                                 listOfClassListData = listOfClassListData,
                                 classListItemClicked = {
-                                    println("Class item with id $it clicked")
+                                    toast(
+                                        context = context,
+                                        text = "Class item with id $it clicked"
+                                    )
+                                },
+                                viewAllButtonClicked = {
+                                    toast(
+                                        context = context,
+                                        text = "View all $it"
+                                    )
                                 }
                             )
                         }
@@ -112,7 +69,7 @@ fun DestinationHome() {
     }
 }
 
-@Preview(showBackground = true, heightDp = 800)
+@Preview(showBackground = true, showSystemUi = true, heightDp = 800)
 @Composable
 fun DefaultPreview() {
     DestinationHome()

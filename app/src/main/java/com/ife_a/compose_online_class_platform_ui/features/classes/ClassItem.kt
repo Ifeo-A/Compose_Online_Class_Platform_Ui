@@ -1,4 +1,4 @@
-package com.ife_a.compose_online_class_platform_ui.components
+package com.ife_a.compose_online_class_platform_ui.features.classes
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -27,7 +27,7 @@ import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onPrim
 import com.ife_a.compose_online_class_platform_ui.utils.getPlayTimeFromMillis
 
 
-data class ClassDetails(
+data class ClassItemData(
     val classId: String,
     val imageSrc: String = "https://unsplash.com/photos/F8t2VGnI47I/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MjN8fGNsYXNzfGVufDB8fHx8MTY0Mjc2MjAzOQ&force=true&w=640",
     val noOfStudents: Int = 0,
@@ -48,14 +48,14 @@ val listOfImages = listOf(
     "https://unsplash.com/photos/UKEq4ompWow/download?force=true&w=640",
 )
 
-@Preview(showBackground = false, widthDp = 400)
+@Preview
 @Composable
 fun ClassItem(
-    classDetails: ClassDetails = ClassDetails(
+    classItemData: ClassItemData = ClassItemData(
         classId = "",
-        imageSrc = "",
+        imageSrc = listOfImages.random(),
         noOfStudents = 0,
-        classDuration = 0,
+        classDuration = 5_400_000, //1hour in millis + 30mins in millis
         classTitle = "",
         classTeacher = "",
         isFavorite = false
@@ -66,9 +66,9 @@ fun ClassItem(
         shape = ShapesV2.large,
         backgroundColor = md_theme_light_onPrimary,
         modifier = Modifier
-            .size(width = 300.dp, height = 340.dp)
+            .size(width = 380.dp, height = 340.dp)
             .padding(end = 14.dp)
-            .clickable { onclick(classDetails.classId) },
+            .clickable { onclick(classItemData.classId) },
         elevation = 4.dp
     ) {
         Column() {
@@ -78,7 +78,7 @@ fun ClassItem(
             ) {
                 Image(
                     painter = rememberImagePainter(
-                        data = listOfImages.random(),
+                        data = classItemData.imageSrc,
                         builder = {
                             crossfade(300)
                         }
@@ -105,14 +105,14 @@ fun ClassItem(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(imageVector = Icons.Outlined.PersonOutline, contentDescription = null)
-                        Text(text = "${classDetails.noOfStudents} students")
+                        Text(text = "${classItemData.noOfStudents} students")
                     }
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(imageVector = Icons.Outlined.PlayArrow, contentDescription = null)
                         Text(
-                            text = getPlayTimeFromMillis(classDetails.classDuration),
+                            text = getPlayTimeFromMillis(classItemData.classDuration),
                             textAlign = TextAlign.End
                         )
 
@@ -120,7 +120,7 @@ fun ClassItem(
                 }
                 // Class title
                 Text(
-                    text = classDetails.classTitle,
+                    text = classItemData.classTitle,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                     fontWeight = FontWeight.Bold
@@ -138,8 +138,8 @@ fun ClassItem(
                             bottom = 0.dp
                         )
                 ) {
-                    Text(text = classDetails.classTeacher)
-                    if (classDetails.isFavorite) {
+                    Text(text = classItemData.classTeacher)
+                    if (classItemData.isFavorite) {
                         Image(
                             imageVector = Icons.Filled.Star,
                             contentDescription = null,
