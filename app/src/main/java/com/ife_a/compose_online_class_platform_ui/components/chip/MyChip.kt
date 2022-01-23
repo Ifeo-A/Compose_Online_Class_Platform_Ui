@@ -1,10 +1,10 @@
 package com.ife_a.compose_online_class_platform_ui.components.chip
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Image
@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.ife_a.compose_online_class_platform_ui.ui.theme.ShapesV2
 import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onPrimary
 
-
+@ExperimentalMaterialApi
 @Preview(name = "Chip")
 @Composable
 fun MyChip(
@@ -24,12 +24,12 @@ fun MyChip(
     text: String = "🎉 Party",
     onClick: (text: String) -> Unit = {}
 ){
-    Card (
+    Card(
         backgroundColor = md_theme_light_onPrimary,
         shape = ShapesV2.large,
         modifier = Modifier
-            .padding(start = 14.dp, top = 6.dp, bottom = 6.dp)
-            .clickable { onClick(text) },
+            .padding(start = 14.dp, top = 6.dp, bottom = 6.dp),
+        onClick = { onClick(text) },
         elevation = 4.dp
     ){
         Row(

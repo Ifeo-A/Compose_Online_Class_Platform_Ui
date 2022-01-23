@@ -1,9 +1,9 @@
 package com.ife_a.compose_online_class_platform_ui.features.classes
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.PersonOutline
@@ -45,6 +45,7 @@ val listOfImages = listOf(
     "https://unsplash.com/photos/UKEq4ompWow/download?force=true&w=640",
 )
 
+@ExperimentalMaterialApi
 @Preview
 @Composable
 fun ClassItem(
@@ -60,13 +61,14 @@ fun ClassItem(
     onClassItemClick: (classId: String) -> Unit = {},
     onFavoriteClick: (classId: String) -> Unit = {}
 ) {
+
     Card(
         shape = ShapesV2.large,
         backgroundColor = md_theme_light_onPrimary,
         modifier = Modifier
             .size(width = 380.dp, height = 340.dp)
-            .padding(start = 14.dp, end = 14.dp)
-            .clickable { onClassItemClick(classItemData.classId) },
+            .padding(start = 14.dp, end = 14.dp),
+        onClick = { onClassItemClick(classItemData.classId) },
         elevation = 4.dp
     ) {
         Column() {
