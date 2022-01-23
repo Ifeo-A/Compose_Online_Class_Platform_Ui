@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.ife_a.compose_online_class_platform_ui.components.buttons.MyIconButton
 import com.ife_a.compose_online_class_platform_ui.components.searchBar.MySearchBar
 import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
-import com.ife_a.compose_online_class_platform_ui.ui.theme.ShapesV2
+import com.ife_a.compose_online_class_platform_ui.ui.theme.roundedBottomLarge
 
 @Preview(name = "Top bar", widthDp = 300)
 @Composable
@@ -27,7 +27,7 @@ fun MyTopBar(
     AppTheme {
         Surface(
             color = MaterialTheme.colors.primary,
-            shape = ShapesV2.large,
+            shape = roundedBottomLarge,
             modifier = Modifier
                 .fillMaxWidth()
         ) {
