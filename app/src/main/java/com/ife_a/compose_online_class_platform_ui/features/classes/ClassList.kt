@@ -24,7 +24,8 @@ fun ClassList(
         classDetails = listOfClassDetailsSample
     ),
     classItemClicked: (classId: String) -> Unit = {},
-    viewAllButtonClicked: (sectionTitle: String) -> Unit = {}
+    viewAllButtonClicked: (sectionTitle: String) -> Unit = {},
+    classItemFavoriteButtonClicked: (classId: String) -> Unit = {}
 ) {
     LazyRowHeader(
         headerText = classListData.headerTitle,
@@ -39,7 +40,8 @@ fun ClassList(
         items(items = classListData.classDetails) { classDetails ->
             ClassItem(
                 classItemData = classDetails,
-                onclick = classItemClicked
+                onClassItemClick = classItemClicked,
+                onFavoriteClick = classItemFavoriteButtonClicked
             )
         }
     }

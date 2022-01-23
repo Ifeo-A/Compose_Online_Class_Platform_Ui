@@ -29,7 +29,7 @@ fun LazyRowHeader(
     ) {
         Text(text = headerText, style = MaterialTheme.typography.h4)
         TextButton(onClick = {viewAllButtonClicked(headerText)}) {
-            Text(text = "View all")
+            Text(text = buttonText)
         }
     }
 }

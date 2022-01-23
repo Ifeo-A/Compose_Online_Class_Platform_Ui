@@ -28,7 +28,7 @@ fun MyChip(
         backgroundColor = md_theme_light_onPrimary,
         shape = ShapesV2.large,
         modifier = Modifier
-            .padding(6.dp)
+            .padding(start = 14.dp, top = 6.dp, bottom = 6.dp)
             .clickable { onClick(text) },
         elevation = 4.dp
     ){

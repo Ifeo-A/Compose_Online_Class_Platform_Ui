@@ -59,6 +59,12 @@ fun DestinationHome() {
                                         context = context,
                                         text = "View all $it"
                                     )
+                                },
+                                classItemFavoriteButtonClicked = {
+                                    toast(
+                                        context = context,
+                                        text = "Toggle favorite for $it"
+                                    )
                                 }
                             )
                         }
