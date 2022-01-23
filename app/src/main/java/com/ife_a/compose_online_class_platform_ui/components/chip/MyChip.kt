@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.ife_a.compose_online_class_platform_ui.ui.theme.ShapesV2
 import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onPrimary
 
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Preview(name = "Chip")
 @Composable
 fun MyChip(

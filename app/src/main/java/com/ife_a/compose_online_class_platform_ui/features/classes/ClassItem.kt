@@ -45,7 +45,8 @@ val listOfImages = listOf(
     "https://unsplash.com/photos/UKEq4ompWow/download?force=true&w=640",
 )
 
-@ExperimentalMaterialApi
+
+@OptIn(ExperimentalMaterialApi::class)
 @Preview
 @Composable
 fun ClassItem(
