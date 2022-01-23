@@ -19,7 +19,8 @@ import com.ife_a.compose_online_class_platform_ui.ui.theme.ShapesV2
 @Preview(name = "Top bar", widthDp = 300)
 @Composable
 fun MyTopBar(
-    name: String = "Jack"
+    userName: String = "Doe",
+    notificationButtonClicked: () -> Unit = {}
 ) {
     var searchValue by remember { mutableStateOf("") }
 
@@ -43,10 +44,13 @@ fun MyTopBar(
 
                 ) {
                     Column() {
-                        Text(text = "Hi, $name ✋")
+                        Text(text = "Hi, $userName ✋")
                         Text(text = "Let's start learning!")
                     }
-                    MyIconButton(icon = Icons.Outlined.Notifications)
+                    MyIconButton(
+                        icon = Icons.Outlined.Notifications,
+                        imageButtonClicked = notificationButtonClicked
+                    )
                 }
                 MySearchBar(searchValue = searchValue) { searchValue = it }
             }

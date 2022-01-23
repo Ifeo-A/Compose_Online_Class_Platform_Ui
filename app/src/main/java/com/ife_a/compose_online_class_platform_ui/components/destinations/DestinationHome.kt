@@ -30,7 +30,15 @@ fun DestinationHome() {
                 ) {
                     LazyColumn {
                         item {
-                            MyTopBar()
+                            MyTopBar(
+                                userName = "Jack",
+                                notificationButtonClicked = {
+                                    toast(
+                                        context = context,
+                                        text = "Notifications clicked"
+                                    )
+                                }
+                            )
                             CategoriesSection(
                                 categories = listOfCategories,
                                 viewAllButtonClicked = {
