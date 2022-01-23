@@ -19,7 +19,7 @@ import com.ife_a.compose_online_class_platform_ui.utils.toast
 fun DestinationHome() {
     val context = LocalContext.current
 
-    val categories = listOfCategoryItemDataSample
+    val listOfCategories = listOfCategoryItemDataSample
     val listOfClassListData = listOfClassListDataSample
 
     ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
@@ -32,7 +32,7 @@ fun DestinationHome() {
                         item {
                             MyTopBar()
                             CategoriesSection(
-                                categories = categories,
+                                categories = listOfCategories,
                                 viewAllButtonClicked = {
                                     toast(
                                         context = context,
