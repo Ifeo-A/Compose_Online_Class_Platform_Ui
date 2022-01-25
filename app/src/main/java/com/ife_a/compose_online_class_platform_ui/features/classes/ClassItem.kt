@@ -68,7 +68,7 @@ fun ClassItem(
         backgroundColor = md_theme_light_onPrimary,
         modifier = Modifier
             .size(width = 380.dp, height = 340.dp)
-            .padding(start = 14.dp, end = 14.dp),
+            .padding(start = 8.dp, end = 8.dp),
         onClick = { onClassItemClick(classItemData.classId) },
         elevation = 4.dp
     ) {
