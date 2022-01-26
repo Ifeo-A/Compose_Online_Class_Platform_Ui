@@ -31,7 +31,7 @@ fun BottomBarCustom(
 
     val listOfMenuItems = listOf(
         MenuData(icon = Icons.Filled.Home, "Home"),
-        MenuData(icon = Icons.Filled.School, "School"),
+        MenuData(icon = Icons.Filled.School, "Browse"),
         MenuData(icon = Icons.Filled.Star, "Saved"),
         MenuData(icon = Icons.Filled.Person, "Profile"),
     )

@@ -23,7 +23,7 @@ import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_second
 
 sealed class NavigationItem(var route: String, var icon: ImageVector, var title: String) {
     object Home : NavigationItem("home", Icons.Filled.Home, "Home")
-    object Music : NavigationItem("music", Icons.Filled.School, "School")
+    object Music : NavigationItem("music", Icons.Filled.School, "Browse")
     object Movies : NavigationItem("movies", Icons.Filled.Star, "Saved")
     object Profile : NavigationItem("profile", Icons.Filled.Person, "Profile")
 }
