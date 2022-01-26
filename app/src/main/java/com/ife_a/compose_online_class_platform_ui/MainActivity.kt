@@ -5,12 +5,16 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.material.Scaffold
+import androidx.compose.ui.platform.LocalContext
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.google.accompanist.insets.ProvideWindowInsets
+import com.ife_a.compose_online_class_platform_ui.components.bottomBar.BottomBarCustom
 import com.ife_a.compose_online_class_platform_ui.destinations.DestinationHome
 import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
+import com.ife_a.compose_online_class_platform_ui.utils.toast
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,10 +26,23 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
+
             ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
                 AppTheme {
                     ProvideWindowInsets {
-                        DestinationHome()
+                        val context = LocalContext.current
+                        Scaffold(
+                            bottomBar = {
+                                BottomBarCustom(onMenuItemClicked = {
+                                    toast(
+                                        context = context,
+                                        text = "Menu $it clicked"
+                                    )
+                                })
+                            }
+                        ) {
+                            DestinationHome()
+                        }
                     }
                 }
             }
