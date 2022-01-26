@@ -24,18 +24,6 @@ import androidx.compose.ui.unit.dp
 import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_primary
 import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_secondary
 
-
-//@Preview(showBackground = false)
-//@Composable
-//fun BottomBar(){
-//    Row(
-//        modifier = Modifier
-//    ) {
-//        MenuIte
-//    }
-//}
-
-
 sealed class NavigationItem(var route: String, var icon: ImageVector, var title: String) {
     object Home : NavigationItem("home", Icons.Filled.Home, "Home")
     object Music : NavigationItem("music", Icons.Filled.School, "School")

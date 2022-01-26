@@ -15,7 +15,7 @@ import com.google.accompanist.insets.navigationBarsPadding
 import com.ife_a.compose_online_class_platform_ui.components.CategoriesSection
 import com.ife_a.compose_online_class_platform_ui.components.ClassesSection
 import com.ife_a.compose_online_class_platform_ui.components.MyTopBar
-import com.ife_a.compose_online_class_platform_ui.components.bottomBar.BottomNavigationBar
+import com.ife_a.compose_online_class_platform_ui.components.bottomBar.BottomBarCustom
 import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
 import com.ife_a.compose_online_class_platform_ui.utils.listOfCategoryItemDataSample
 import com.ife_a.compose_online_class_platform_ui.utils.listOfClassListDataSample
@@ -32,9 +32,7 @@ fun DestinationHome() {
         AppTheme {
             ProvideWindowInsets {
                 Scaffold(
-                    bottomBar = {
-                        BottomNavigationBar()
-                    },
+                    bottomBar = { BottomBarCustom() }
                 ) {
                     Surface(
                         color = MaterialTheme.colors.background,
@@ -93,7 +91,9 @@ fun DestinationHome() {
                             }
                         }
                     }
+
                 }
+
             }
         }
     }
