@@ -32,7 +32,14 @@ fun DestinationHome() {
         AppTheme {
             ProvideWindowInsets {
                 Scaffold(
-                    bottomBar = { BottomBarCustom() }
+                    bottomBar = {
+                        BottomBarCustom(onMenuItemClicked = {
+                            toast(
+                                context = context,
+                                text = "Menu $it clicked"
+                            )
+                        })
+                    }
                 ) {
                     Surface(
                         color = MaterialTheme.colors.background,

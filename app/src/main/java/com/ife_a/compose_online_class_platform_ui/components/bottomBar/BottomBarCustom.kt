@@ -1,10 +1,8 @@
 package com.ife_a.compose_online_class_platform_ui.components.bottomBar
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
@@ -27,7 +25,9 @@ data class MenuData(
 
 @Preview
 @Composable
-fun BottomBarCustom() {
+fun BottomBarCustom(
+    onMenuItemClicked: (menuTitle: String) -> Unit = {}
+) {
 
     val listOfMenuItems = listOf(
         MenuData(icon = Icons.Filled.Home, "Home"),
@@ -42,29 +42,51 @@ fun BottomBarCustom() {
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
         ) {
             listOfMenuItems.forEach {
-                MyMenuItem(menuData = it, isSelected = it.text == "Home")
+                MyMenuItem(
+                    menuData = it,
+                    isSelected = it.text == "Home"
+                ) {
+                    onMenuItemClicked(it.text)
+                }
             }
         }
     }
 }
 
+
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun MyMenuItem(menuData: MenuData, isSelected: Boolean = false) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+fun MyMenuItem(
+    menuData: MenuData,
+    isSelected: Boolean = false,
+    menuItemClicked: () -> Unit
+) {
+    Surface(
+        shape = CircleShape,
+        onClick = { menuItemClicked() }
     ) {
-        Icon(
-            imageVector = menuData.icon,
-            contentDescription = null,
-            tint = if (isSelected) md_theme_light_primary else md_theme_light_secondary.copy(0.4f)
-        )
-        Text(
-            text = menuData.text,
-            fontSize = MaterialTheme.typography.h6.fontSize,
-            color = if (isSelected) md_theme_light_primary else md_theme_light_secondary.copy(0.4f)
-        )
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .padding(12.dp),
+        ) {
+            Icon(
+                imageVector = menuData.icon,
+                contentDescription = null,
+                tint = if (isSelected) md_theme_light_primary else md_theme_light_secondary.copy(
+                    0.4f
+                )
+            )
+            Text(
+                text = menuData.text,
+                fontSize = MaterialTheme.typography.h6.fontSize,
+                color = if (isSelected) md_theme_light_primary else md_theme_light_secondary.copy(
+                    0.4f
+                )
+            )
+        }
+
     }
 }
