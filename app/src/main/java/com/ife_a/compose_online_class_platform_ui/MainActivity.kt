@@ -8,7 +8,9 @@ import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import com.google.accompanist.insets.ProvideWindowInsets
 import com.ife_a.compose_online_class_platform_ui.destinations.DestinationHome
+import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +22,13 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
-            DestinationHome()
+            ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
+                AppTheme {
+                    ProvideWindowInsets {
+                        DestinationHome()
+                    }
+                }
+            }
         }
     }
 }
@@ -30,7 +38,7 @@ fun shouldMakeFullScreen(
     fullScreen: Boolean,
     hideStatusBar: Boolean = false,
     hideNavigationBar: Boolean = false
-){
+) {
     if (fullScreen) {
         //The only required part for full screen.
         WindowCompat.setDecorFitsSystemWindows(window, false)

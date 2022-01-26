@@ -22,6 +22,7 @@ import com.ife_a.compose_online_class_platform_ui.utils.listOfCategoryItemDataSa
 import com.ife_a.compose_online_class_platform_ui.utils.listOfClassListDataSample
 import com.ife_a.compose_online_class_platform_ui.utils.toast
 
+@Preview(showBackground = true, showSystemUi = false, heightDp = 800)
 @Composable
 fun DestinationHome() {
     val context = LocalContext.current
@@ -29,90 +30,78 @@ fun DestinationHome() {
     val listOfCategories = listOfCategoryItemDataSample
     val listOfClassListData = listOfClassListDataSample
 
-    ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
-        AppTheme {
-            ProvideWindowInsets {
-                Scaffold(
-                    bottomBar = {
-                        BottomBarCustom(onMenuItemClicked = {
+    Scaffold(
+        bottomBar = {
+            BottomBarCustom(onMenuItemClicked = {
+                toast(
+                    context = context,
+                    text = "Menu $it clicked"
+                )
+            })
+//            BottomBarNative(onMenuItemClicked = {
+//                toast(
+//                    context = context,
+//                    text = "Menu $it clicked"
+//                )
+//            })
+        }
+    ) {
+        Surface(
+            color = MaterialTheme.colors.background,
+            modifier = Modifier
+                .navigationBarsPadding()
+                .padding(bottom = 20.dp)
+
+        ) {
+            LazyColumn {
+                item {
+                    MyTopBar(
+                        userName = "Jack",
+                        notificationButtonClicked = {
                             toast(
                                 context = context,
-                                text = "Menu $it clicked"
+                                text = "Notifications clicked"
                             )
-                        })
-//                        BottomBarNative(onMenuItemClicked = {
-//                            toast(
-//                                context = context,
-//                                text = "Menu $it clicked"
-//                            )
-//                        })
-                    }
-                ) {
-                    Surface(
-                        color = MaterialTheme.colors.background,
-                        modifier = Modifier
-                            .navigationBarsPadding()
-                            .padding(bottom = 20.dp)
-
-                    ) {
-                        LazyColumn {
-                            item {
-                                MyTopBar(
-                                    userName = "Jack",
-                                    notificationButtonClicked = {
-                                        toast(
-                                            context = context,
-                                            text = "Notifications clicked"
-                                        )
-                                    }
-                                )
-                                CategoriesSection(
-                                    categories = listOfCategories,
-                                    viewAllButtonClicked = {
-                                        toast(
-                                            context = context,
-                                            text = "View all $it clicked"
-                                        )
-                                    },
-                                    categoryClicked = {
-                                        toast(
-                                            context = context,
-                                            text = "Category $it clicked"
-                                        )
-                                    }
-                                )
-                                ClassesSection(
-                                    listOfClassListData = listOfClassListData,
-                                    classListItemClicked = {
-                                        toast(
-                                            context = context,
-                                            text = "Class item with id $it clicked"
-                                        )
-                                    },
-                                    viewAllButtonClicked = {
-                                        toast(
-                                            context = context,
-                                            text = "View all $it"
-                                        )
-                                    },
-                                    classItemFavoriteButtonClicked = {
-                                        toast(
-                                            context = context,
-                                            text = "Toggle favorite for $it"
-                                        )
-                                    }
-                                )
-                            }
                         }
-                    }
+                    )
+                    CategoriesSection(
+                        categories = listOfCategories,
+                        viewAllButtonClicked = {
+                            toast(
+                                context = context,
+                                text = "View all $it clicked"
+                            )
+                        },
+                        categoryClicked = {
+                            toast(
+                                context = context,
+                                text = "Category $it clicked"
+                            )
+                        }
+                    )
+                    ClassesSection(
+                        listOfClassListData = listOfClassListData,
+                        classListItemClicked = {
+                            toast(
+                                context = context,
+                                text = "Class item with id $it clicked"
+                            )
+                        },
+                        viewAllButtonClicked = {
+                            toast(
+                                context = context,
+                                text = "View all $it"
+                            )
+                        },
+                        classItemFavoriteButtonClicked = {
+                            toast(
+                                context = context,
+                                text = "Toggle favorite for $it"
+                            )
+                        }
+                    )
                 }
             }
         }
     }
-}
-
-@Preview(showBackground = true, showSystemUi = false, heightDp = 800)
-@Composable
-fun DefaultPreview() {
-    DestinationHome()
 }
