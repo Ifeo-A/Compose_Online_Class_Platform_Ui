@@ -16,6 +16,7 @@ import com.ife_a.compose_online_class_platform_ui.components.CategoriesSection
 import com.ife_a.compose_online_class_platform_ui.components.ClassesSection
 import com.ife_a.compose_online_class_platform_ui.components.MyTopBar
 import com.ife_a.compose_online_class_platform_ui.components.bottomBar.BottomBarCustom
+import com.ife_a.compose_online_class_platform_ui.components.bottomBar.BottomBarNative
 import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
 import com.ife_a.compose_online_class_platform_ui.utils.listOfCategoryItemDataSample
 import com.ife_a.compose_online_class_platform_ui.utils.listOfClassListDataSample
@@ -39,6 +40,12 @@ fun DestinationHome() {
                                 text = "Menu $it clicked"
                             )
                         })
+//                        BottomBarNative(onMenuItemClicked = {
+//                            toast(
+//                                context = context,
+//                                text = "Menu $it clicked"
+//                            )
+//                        })
                     }
                 ) {
                     Surface(
@@ -98,15 +105,13 @@ fun DestinationHome() {
                             }
                         }
                     }
-
                 }
-
             }
         }
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true, heightDp = 800)
+@Preview(showBackground = true, showSystemUi = false, heightDp = 800)
 @Composable
 fun DefaultPreview() {
     DestinationHome()

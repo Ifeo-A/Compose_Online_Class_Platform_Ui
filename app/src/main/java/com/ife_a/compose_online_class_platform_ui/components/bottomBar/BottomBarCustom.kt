@@ -65,7 +65,7 @@ fun MyMenuItem(
 ) {
     Surface(
         shape = CircleShape,
-        onClick = { menuItemClicked() }
+        onClick = { menuItemClicked() },
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
