@@ -8,7 +8,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.School
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -29,6 +29,8 @@ fun BottomBarCustom(
     onMenuItemClicked: (menuTitle: String) -> Unit = {}
 ) {
 
+    var selectedMenuItem by remember { mutableStateOf("Home") }
+
     val listOfMenuItems = listOf(
         MenuData(icon = Icons.Filled.Home, "Home"),
         MenuData(icon = Icons.Filled.School, "Browse"),
@@ -43,13 +45,15 @@ fun BottomBarCustom(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            listOfMenuItems.forEach {
+            listOfMenuItems.forEach { menuItemData ->
                 MyMenuItem(
-                    menuData = it,
-                    isSelected = it.text == "Home"
-                ) {
-                    onMenuItemClicked(it.text)
-                }
+                    menuData = menuItemData,
+                    isSelected = menuItemData.text == selectedMenuItem,
+                    menuItemClicked = {
+                        selectedMenuItem = menuItemData.text
+                        onMenuItemClicked(menuItemData.text)
+                    }
+                )
             }
         }
     }
