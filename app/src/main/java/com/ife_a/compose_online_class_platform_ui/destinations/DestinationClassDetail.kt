@@ -32,7 +32,6 @@ import com.ife_a.compose_online_class_platform_ui.features.classes.VideoPlaytime
 fun DestinationClassDetail(
     classItemData: ClassItemData = sampleClassItemData
 ) {
-    val context = LocalContext.current
 
     Surface(
         color = MaterialTheme.colors.background,
@@ -96,6 +95,26 @@ fun DestinationClassDetail(
                                 showBackground = true
                             )
                         }
+                    }
+                }
+                Column(
+                    modifier = Modifier
+                        .padding(start = 20.dp, end = 20.dp, top = 10.dp, bottom = 10.dp)
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .padding(bottom = 20.dp)
+                    ) {
+                        TitleLarge(text = classItemData.classTitle)
+                    }
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        Subtitle(text = classItemData.classTeacher)
+                        FavoriteStar(classItemData.isFavorite, onClick = {})
                     }
                 }
             }
