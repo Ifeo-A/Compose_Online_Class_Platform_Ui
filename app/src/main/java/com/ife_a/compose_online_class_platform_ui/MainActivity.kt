@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.ife_a.compose_online_class_platform_ui.components.bottomBar.BottomBarCustom
+import com.ife_a.compose_online_class_platform_ui.destinations.DestinationClassDetail
 import com.ife_a.compose_online_class_platform_ui.destinations.DestinationHome
 import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
 import com.ife_a.compose_online_class_platform_ui.utils.toast
@@ -22,6 +23,7 @@ class MainActivity : ComponentActivity() {
 
         shouldMakeFullScreen(
             fullScreen = false,
+            hideStatusBar = true,
             window = window
         )
 
@@ -41,7 +43,8 @@ class MainActivity : ComponentActivity() {
                                 })
                             }
                         ) {
-                            DestinationHome()
+//                            DestinationHome()
+                            DestinationClassDetail()
                         }
                     }
                 }

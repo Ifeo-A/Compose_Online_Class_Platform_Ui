@@ -35,8 +35,8 @@ fun getPlayTimeFromMillis(millis: Long): String{
     val seconds = duration - (hours * 3600 + minutes * 60)
 
     return "$hours " +
-            if(hours > 1) "hours" else "hour" +
-            " $minutes " +
-            if(minutes > 1) "minutes" else "minute"
+            if (hours > 1) "hs" else "h" +
+                    " $minutes " +
+                    if (minutes > 1) "m" else "ms"
 
 }

@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.ife_a.compose_online_class_platform_ui.components.favorite.FavoriteStar
+import com.ife_a.compose_online_class_platform_ui.components.text.TitleMedium
 import com.ife_a.compose_online_class_platform_ui.ui.theme.ShapesV2
 import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onPrimary
 import com.ife_a.compose_online_class_platform_ui.utils.getPlayTimeFromMillis
@@ -102,30 +103,12 @@ fun ClassItem(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Image(imageVector = Icons.Outlined.PersonOutline, contentDescription = null)
-                        Text(text = "${classItemData.noOfStudents} students")
-                    }
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Image(imageVector = Icons.Outlined.PlayArrow, contentDescription = null)
-                        Text(
-                            text = getPlayTimeFromMillis(classItemData.classDuration),
-                            textAlign = TextAlign.End
-                        )
-
-                    }
+                    StudentCountDisplay(classItemData.noOfStudents)
+                    VideoPlaytimeDisplay(classItemData.classDuration)
                 }
                 // Class title
-                Text(
-                    text = classItemData.classTitle,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
-                    fontWeight = FontWeight.Bold
-                )
+                TitleMedium(text = classItemData.classTitle)
+
                 // Class teacher and favourited icon
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,

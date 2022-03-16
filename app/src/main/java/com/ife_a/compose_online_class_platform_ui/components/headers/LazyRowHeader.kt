@@ -12,6 +12,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ife_a.compose_online_class_platform_ui.components.text.TitleLarge
+import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_gray
+import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_secondary
 
 @Preview(showBackground = true)
 @Composable
@@ -27,8 +30,8 @@ fun LazyRowHeader(
             .fillMaxWidth()
             .padding(12.dp)
     ) {
-        Text(text = headerText, style = MaterialTheme.typography.h4)
-        TextButton(onClick = {viewAllButtonClicked(headerText)}) {
+        TitleLarge(text = headerText)
+        TextButton(onClick = { viewAllButtonClicked(headerText) }) {
             Text(text = buttonText)
         }
     }

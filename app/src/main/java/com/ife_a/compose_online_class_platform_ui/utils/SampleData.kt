@@ -17,6 +17,16 @@ val listOfCategoryItemDataSample = listOf(
     CategoryItemData("", "‍📈 Statistics"),
 )
 
+val sampleClassItemData = ClassItemData(
+    classId = "cat",
+    imageSrc = "https://unsplash.com/photos/2Q3Ivd-HsaM/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MzV8fGNsYXNzfGVufDB8fHx8MTY0Mjc2MjAzOQ&force=true&w=640",
+    noOfStudents = 0,
+    classDuration = 8860040,
+    classTitle = "Theory of Relativity",
+    classTeacher = "Diane Abbott",
+    isFavorite = true
+)
+
 val listOfClassDetailsSample = listOf(
     ClassItemData(
         classId = "cat",
