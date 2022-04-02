@@ -5,15 +5,18 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.ife_a.compose_online_class_platform_ui.components.bottomBar.BottomBarCustom
 import com.ife_a.compose_online_class_platform_ui.destinations.DestinationClassDetail
-import com.ife_a.compose_online_class_platform_ui.destinations.DestinationHome
 import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
 import com.ife_a.compose_online_class_platform_ui.utils.toast
 
@@ -42,9 +45,14 @@ class MainActivity : ComponentActivity() {
                                     )
                                 })
                             }
-                        ) {
-//                            DestinationHome()
-                            DestinationClassDetail()
+                        ) { scaffoldPaddingValues ->
+                            Box(
+                                modifier = Modifier
+                                    .padding(bottom = scaffoldPaddingValues.calculateBottomPadding())
+                            ) {
+//                                DestinationHome()
+                                DestinationClassDetail()
+                            }
                         }
                     }
                 }

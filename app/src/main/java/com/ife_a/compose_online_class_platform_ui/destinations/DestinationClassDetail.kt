@@ -36,7 +36,7 @@ import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onPrim
 import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onSecondary
 import com.ife_a.compose_online_class_platform_ui.utils.sampleClassItemDataTheoryOfRelativityClass
 
-@Preview(showBackground = true, showSystemUi = false, heightDp = 800)
+@Preview(showBackground = true, showSystemUi = true, heightDp = 800)
 @Composable
 fun DestinationClassDetail(
     classItemData: ClassItemData = sampleClassItemDataTheoryOfRelativityClass
@@ -45,7 +45,7 @@ fun DestinationClassDetail(
         color = MaterialTheme.colors.background,
         modifier = Modifier
             .navigationBarsWithImePadding()
-            .padding(bottom = 60.dp)
+            .fillMaxHeight()
     ) {
         LazyColumn {
             item {
