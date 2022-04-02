@@ -11,6 +11,8 @@ val Shapes = Shapes(
 )
 
 val ShapesV2 = Shapes(
+    small = RoundedCornerShape(14.dp),
+    medium = RoundedCornerShape(18.dp),
     large = RoundedCornerShape(24.dp)
 )
 

@@ -27,16 +27,23 @@ fun <T> List<T>.repeat(times: Int): List<T>{
     return listToReturn
 }
 
-fun getPlayTimeFromMillis(millis: Long): String{
+fun getPlayTimeFromMillis(millis: Long, showSeparator: Boolean = false): String {
 
     val duration = millis / 1000
     val hours = duration / 3600
-    val minutes = (duration - hours *3600 ) / 60
+    val minutes = (duration - hours * 3600) / 60
     val seconds = duration - (hours * 3600 + minutes * 60)
 
-    return "$hours " +
-            if (hours > 1) "hs" else "h" +
-                    " $minutes " +
-                    if (minutes > 1) "m" else "ms"
+    return if (showSeparator) {
+        "$hours" +
+                if (hours > 1) "hs" else "h" +
+                        ":$minutes" +
+                        if (minutes > 1) "m" else "ms"
+    } else {
+        "$hours" +
+                if (hours > 1) "hs" else "h" +
+                        " $minutes" +
+                        if (minutes > 1) "m" else "ms"
+    }
 
 }

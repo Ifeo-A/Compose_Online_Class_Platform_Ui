@@ -1,46 +1,51 @@
 package com.ife_a.compose_online_class_platform_ui.destinations
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowLeft
-import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.PhoneIphone
+import androidx.compose.material.icons.outlined.ThumbUpOffAlt
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.google.accompanist.insets.navigationBarsWithImePadding
+import com.ife_a.compose_online_class_platform_ui.components.ClassSellingPoints
+import com.ife_a.compose_online_class_platform_ui.components.ClassVideoList
 import com.ife_a.compose_online_class_platform_ui.components.buttons.MyIconButton
 import com.ife_a.compose_online_class_platform_ui.components.favorite.FavoriteStar
 import com.ife_a.compose_online_class_platform_ui.components.text.Subtitle
 import com.ife_a.compose_online_class_platform_ui.components.text.TitleLarge
 import com.ife_a.compose_online_class_platform_ui.features.classes.ClassItemData
-import com.ife_a.compose_online_class_platform_ui.utils.*
 import com.ife_a.compose_online_class_platform_ui.features.classes.StudentCountDisplay
 import com.ife_a.compose_online_class_platform_ui.features.classes.VideoPlaytimeDisplay
-import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_secondary
+import com.ife_a.compose_online_class_platform_ui.ui.theme.ShapesV2
+import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_dark_primaryContainer
+import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onPrimary
+import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onSecondary
+import com.ife_a.compose_online_class_platform_ui.utils.sampleClassItemDataTheoryOfRelativityClass
 
-@Preview(showBackground = false, showSystemUi = false, heightDp = 800)
+@Preview(showBackground = true, showSystemUi = false, heightDp = 800)
 @Composable
 fun DestinationClassDetail(
-    classItemData: ClassItemData = sampleClassItemData
+    classItemData: ClassItemData = sampleClassItemDataTheoryOfRelativityClass
 ) {
-
     Surface(
         color = MaterialTheme.colors.background,
         modifier = Modifier
             .navigationBarsWithImePadding()
-            .padding(bottom = 20.dp)
+            .padding(bottom = 60.dp)
     ) {
         LazyColumn {
             item {
@@ -90,11 +95,12 @@ fun DestinationClassDetail(
                         ) {
                             //student and total play time
                             StudentCountDisplay(
-                                noOfStudents = sampleClassItemData.noOfStudents,
+                                noOfStudents = classItemData.noOfStudents,
                                 showBackground = true
                             )
+
                             VideoPlaytimeDisplay(
-                                durationMillis = sampleClassItemData.classDuration,
+                                durationMillis = classItemData.classDuration,
                                 showBackground = true
                             )
                         }
@@ -122,53 +128,71 @@ fun DestinationClassDetail(
                         FavoriteStar(classItemData.isFavorite, onClick = {})
                     }
 
-                    Row(
+                    Surface(
+                        shape = ShapesV2.medium,
+                        color = md_theme_light_onSecondary,
                         modifier = Modifier
-                            .padding(top = 20.dp)
+                            .padding(vertical = 20.dp)
                     ) {
-                        Column(
-                            modifier = Modifier
-                                .padding(vertical = 20.dp, horizontal = 10.dp)
-                        ) {
-                            Text(
-                                text = "You will get:",
+                        Row() {
+                            Column(
                                 modifier = Modifier
-                                    .padding(bottom = 8.dp)
-                            )
-                            ClassBulletPoint(
-                                imageVector = Icons.Outlined.ThumbUpOffAlt,
-                                text = "Unlimited access to every class"
-                            )
-                            ClassBulletPoint(
-                                imageVector = Icons.Outlined.FavoriteBorder,
-                                text = "Supportive online creative community"
-                            )
-                            ClassBulletPoint(
-                                imageVector = Icons.Outlined.PhoneIphone,
-                                text = "Learn offline with our app"
-                            )
+                                    .padding(vertical = 20.dp, horizontal = 14.dp)
+                            ) {
+                                Text(
+                                    text = "You will get:",
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 18.sp,
+                                    modifier = Modifier
+                                        .padding(bottom = 8.dp)
+                                )
+                                ClassSellingPoints(
+                                    imageVector = Icons.Outlined.ThumbUpOffAlt,
+                                    text = "Unlimited access to every class"
+                                )
+                                ClassSellingPoints(
+                                    imageVector = Icons.Outlined.FavoriteBorder,
+                                    text = "Supportive online creative community"
+                                )
+                                ClassSellingPoints(
+                                    imageVector = Icons.Outlined.PhoneIphone,
+                                    text = "Learn offline with our app"
+                                )
+                            }
                         }
                     }
                 }
+
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .padding(horizontal = 20.dp)
+
+                ) {
+                    TextButton(
+                        shape = ShapesV2.small,
+                        onClick = { },
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = md_theme_dark_primaryContainer
+                        ),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        Text(
+                            text = "Get started for free",
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 18.sp,
+                            color = md_theme_light_onPrimary,
+                            modifier = Modifier
+                                .padding(vertical = 6.dp)
+                        )
+                    }
+                }
+                ClassVideoList(videoEntries = classItemData.videos)
             }
         }
     }
-
 }
 
-@Composable
-fun ClassBulletPoint(imageVector: ImageVector, text: String) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .padding(4.dp)
-    ) {
-        Icon(
-            imageVector = imageVector,
-            contentDescription = null,
-            modifier = Modifier.padding(end = 10.dp),
-            tint = md_theme_light_secondary
-        )
-        Text(text = text)
-    }
-}

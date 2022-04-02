@@ -5,16 +5,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.PersonOutline
-import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
@@ -22,18 +16,21 @@ import com.ife_a.compose_online_class_platform_ui.components.favorite.FavoriteSt
 import com.ife_a.compose_online_class_platform_ui.components.text.TitleMedium
 import com.ife_a.compose_online_class_platform_ui.ui.theme.ShapesV2
 import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onPrimary
-import com.ife_a.compose_online_class_platform_ui.utils.getPlayTimeFromMillis
+import com.ife_a.compose_online_class_platform_ui.utils.sampleTheoryOfRelativityClassVideos
 
 
 data class ClassItemData(
     val classId: String,
     val imageSrc: String = "https://unsplash.com/photos/F8t2VGnI47I/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MjN8fGNsYXNzfGVufDB8fHx8MTY0Mjc2MjAzOQ&force=true&w=640",
     val noOfStudents: Int = 0,
-    val classDuration: Long = 0L,
     val classTitle: String,
     val classTeacher: String,
     val isFavorite: Boolean = false,
-)
+    val videos: List<ClassVideo>,
+    val categoryId: String,
+) {
+    val classDuration = videos.sumOf { it.videoDuration }
+}
 
 val listOfImages = listOf(
     "https://unsplash.com/photos/FIxxQDwpJ2g/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MzR8fGNsYXNzfGVufDB8fHx8MTY0Mjc2MjAzOQ&force=true&w=640",
@@ -55,10 +52,11 @@ fun ClassItem(
         classId = "",
         imageSrc = listOfImages.random(),
         noOfStudents = 0,
-        classDuration = 5_400_000, //1hour in millis + 30mins in millis
-        classTitle = "",
+        classTitle = "", //1hour in millis + 30mins in millis
         classTeacher = "",
-        isFavorite = false
+        isFavorite = false,
+        videos = sampleTheoryOfRelativityClassVideos,
+        categoryId = "a410"
     ),
     onClassItemClick: (classId: String) -> Unit = {},
     onFavoriteClick: (classId: String) -> Unit = {}
