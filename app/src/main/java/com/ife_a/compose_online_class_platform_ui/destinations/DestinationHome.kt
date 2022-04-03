@@ -9,17 +9,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavGraph
 import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.ife_a.compose_online_class_platform_ui.components.CategoriesSection
 import com.ife_a.compose_online_class_platform_ui.components.ClassesSection
 import com.ife_a.compose_online_class_platform_ui.components.MyTopBar
+import com.ife_a.compose_online_class_platform_ui.features.classes.ClassItemData
 import com.ife_a.compose_online_class_platform_ui.utils.listOfCategoryItemDataSample
 import com.ife_a.compose_online_class_platform_ui.utils.listOfClassListDataSample
 import com.ife_a.compose_online_class_platform_ui.utils.toast
+import com.ramcosta.composedestinations.annotation.Destination
 
 @Preview(showBackground = true, showSystemUi = false, heightDp = 800)
+@Destination(start = true)
 @Composable
-fun DestinationHome() {
+fun DestinationHome(
+    classIdClicked: (classId: String) -> Unit = {}
+) {
     val context = LocalContext.current
 
     val listOfCategories = listOfCategoryItemDataSample
@@ -59,11 +65,12 @@ fun DestinationHome() {
                 )
                 ClassesSection(
                     listOfClassListData = listOfClassListData,
-                    classListItemClicked = {
+                    classListItemClicked = { classId ->
                         toast(
                             context = context,
-                            text = "Class item with id $it clicked"
+                            text = "Class item with id $classId clicked"
                         )
+                        classIdClicked(classId)
                     },
                     viewAllButtonClicked = {
                         toast(

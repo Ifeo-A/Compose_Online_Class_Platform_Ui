@@ -8,17 +8,28 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.ife_a.compose_online_class_platform_ui.components.bottomBar.BottomBarCustom
 import com.ife_a.compose_online_class_platform_ui.destinations.DestinationClassDetail
+import com.ife_a.compose_online_class_platform_ui.destinations.DestinationHome
+import com.ife_a.compose_online_class_platform_ui.destinations.NavGraphs
+import com.ife_a.compose_online_class_platform_ui.destinations.destinations.DestinationClassDetailDestination
+import com.ife_a.compose_online_class_platform_ui.destinations.destinations.DestinationHomeDestination
 import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
+import com.ife_a.compose_online_class_platform_ui.utils.listOfClassDetailsSample
+import com.ife_a.compose_online_class_platform_ui.utils.sampleClassItemDataPhotographyClass
 import com.ife_a.compose_online_class_platform_ui.utils.toast
+import com.ramcosta.composedestinations.DestinationsNavHost
+import com.ramcosta.composedestinations.navigation.navigateTo
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +42,11 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
+            val navController = rememberNavController()
+            DestinationsNavHost(
+                navController = navController,
+                navGraph = NavGraphs.root
+            )
 
             ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
                 AppTheme {
@@ -50,8 +66,22 @@ class MainActivity : ComponentActivity() {
                                 modifier = Modifier
                                     .padding(bottom = scaffoldPaddingValues.calculateBottomPadding())
                             ) {
-//                                DestinationHome()
-                                DestinationClassDetail()
+//                                navController.navigateTo(direction = DestinationHomeDestination)
+                                DestinationHome(
+                                    classIdClicked = { classId ->
+                                        println("Home efe Class item with id $classId clicked")
+                                        val clickedClass =
+                                            listOfClassDetailsSample.firstOrNull { it.classId == classId }
+                                        clickedClass?.let {
+//                                            DestinationClassDetail(classId = it.classId)
+                                            navigateToD(
+                                                id = it.classId,
+                                                navController = navController
+                                            )
+                                        }
+                                    }
+                                )
+//                                DestinationClassDetail()
                             }
                         }
                     }
@@ -60,6 +90,11 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+fun navigateToD(id: String, navController: NavController) {
+    navController.navigateTo(direction = DestinationClassDetailDestination(classId = id))
+}
+
 
 fun shouldMakeFullScreen(
     window: Window,
