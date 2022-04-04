@@ -13,8 +13,8 @@ import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.ife_a.compose_online_class_platform_ui.components.CategoriesSection
 import com.ife_a.compose_online_class_platform_ui.components.ClassesSection
 import com.ife_a.compose_online_class_platform_ui.components.MyTopBar
-import com.ife_a.compose_online_class_platform_ui.utils.listOfCategoryItemDataSample
-import com.ife_a.compose_online_class_platform_ui.utils.listOfClassListDataSample
+import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfCategories
+import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfClassListData
 import com.ife_a.compose_online_class_platform_ui.utils.toast
 
 @Preview(showBackground = true, showSystemUi = false, heightDp = 800)
@@ -24,8 +24,8 @@ fun DestinationHome(
 ) {
     val context = LocalContext.current
 
-    val listOfCategories = listOfCategoryItemDataSample
-    val listOfClassListData = listOfClassListDataSample
+    val listOfCategories = sampleListOfCategories
+    val listOfClassListData = sampleListOfClassListData
 
     Surface(
         color = MaterialTheme.colors.background,

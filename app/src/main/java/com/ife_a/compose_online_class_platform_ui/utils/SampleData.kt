@@ -6,7 +6,7 @@ import com.ife_a.compose_online_class_platform_ui.features.classes.ClassListData
 import com.ife_a.compose_online_class_platform_ui.features.classes.ClassVideo
 
 
-val listOfCategoryItemDataSample = listOf(
+val sampleListOfCategories = listOf(
     CategoryItemData("", "🎨 Design"),
     CategoryItemData("", "👨‍🎨 Art"),
     CategoryItemData("", "‍🖥 Programming"),
@@ -144,13 +144,13 @@ val samplePhotographyClassVideos = listOf<ClassVideo>(
     )
 )
 
-val listOfClassDetailsSample = listOf(
+val sampleListOfClassItemData = listOf(
     sampleClassItemDataTheoryOfRelativityClass,
     sampleClassItemDataProductivityClass,
     sampleClassItemDataPhotographyClass
 )
 
-val listOfClassListDataSample = listOf(
+val sampleListOfClassListData = listOf(
     ClassListData(
         headerTitle = "Featured classes",
         classDetails = listOf(

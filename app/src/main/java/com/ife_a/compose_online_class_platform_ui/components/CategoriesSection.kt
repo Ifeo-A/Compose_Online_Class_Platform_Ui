@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ife_a.compose_online_class_platform_ui.components.chip.MyChip
 import com.ife_a.compose_online_class_platform_ui.components.headers.LazyRowHeader
-import com.ife_a.compose_online_class_platform_ui.utils.listOfCategoryItemDataSample
+import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfCategories
 
 data class CategoryItemData(
     val categoryId: String = "",
@@ -22,7 +22,7 @@ data class CategoryItemData(
 @Preview(name = "Categories Section", widthDp = 300)
 @Composable
 fun CategoriesSection(
-    categories: List<CategoryItemData> = listOfCategoryItemDataSample,
+    categories: List<CategoryItemData> = sampleListOfCategories,
     viewAllButtonClicked: (buttonText: String) -> Unit = {},
     categoryClicked: (categoryId: String) -> Unit = {}
 ){

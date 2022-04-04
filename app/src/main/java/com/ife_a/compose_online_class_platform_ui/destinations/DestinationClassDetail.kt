@@ -27,17 +27,13 @@ import com.ife_a.compose_online_class_platform_ui.components.buttons.MyIconButto
 import com.ife_a.compose_online_class_platform_ui.components.favorite.FavoriteStar
 import com.ife_a.compose_online_class_platform_ui.components.text.Subtitle
 import com.ife_a.compose_online_class_platform_ui.components.text.TitleLarge
-import com.ife_a.compose_online_class_platform_ui.features.classes.ClassItemData
 import com.ife_a.compose_online_class_platform_ui.features.classes.StudentCountDisplay
 import com.ife_a.compose_online_class_platform_ui.features.classes.VideoPlaytimeDisplay
 import com.ife_a.compose_online_class_platform_ui.ui.theme.ShapesV2
 import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_dark_primaryContainer
 import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onPrimary
 import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onSecondary
-import com.ife_a.compose_online_class_platform_ui.utils.listOfCategoryItemDataSample
-import com.ife_a.compose_online_class_platform_ui.utils.listOfClassDetailsSample
-import com.ife_a.compose_online_class_platform_ui.utils.listOfClassListDataSample
-import com.ife_a.compose_online_class_platform_ui.utils.sampleClassItemDataTheoryOfRelativityClass
+import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfClassItemData
 
 @Preview(showBackground = true, showSystemUi = true, heightDp = 800)
 @Composable
@@ -45,7 +41,7 @@ fun DestinationClassDetail(
     classId: String = "cat",
     navBarPadding: Int = 0
 ) {
-    val classItemData = listOfClassDetailsSample.find { classItemData ->
+    val classItemData = sampleListOfClassItemData.find { classItemData ->
         classItemData.classId == classId
     }
 

@@ -10,12 +10,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ife_a.compose_online_class_platform_ui.features.classes.ClassList
 import com.ife_a.compose_online_class_platform_ui.features.classes.ClassListData
-import com.ife_a.compose_online_class_platform_ui.utils.listOfClassListDataSample
+import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfClassListData
 
 @Preview(showBackground = true)
 @Composable
 fun ClassesSection(
-    listOfClassListData: List<ClassListData> = listOfClassListDataSample,
+    listOfClassListData: List<ClassListData> = sampleListOfClassListData,
     /**
      * Called when a class item in the list is clicked
      */
