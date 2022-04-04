@@ -19,7 +19,9 @@ import com.ife_a.compose_online_class_platform_ui.utils.toast
 
 @Preview(showBackground = true, showSystemUi = false, heightDp = 800)
 @Composable
-fun DestinationHome() {
+fun DestinationHome(
+    classItemClicked: (classId: String) -> Unit = {}
+) {
     val context = LocalContext.current
 
     val listOfCategories = listOfCategoryItemDataSample
@@ -64,6 +66,7 @@ fun DestinationHome() {
                             context = context,
                             text = "Class item with id $it clicked"
                         )
+                        classItemClicked(it)
                     },
                     viewAllButtonClicked = {
                         toast(

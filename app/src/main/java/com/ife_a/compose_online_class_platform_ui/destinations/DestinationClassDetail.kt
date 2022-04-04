@@ -34,163 +34,172 @@ import com.ife_a.compose_online_class_platform_ui.ui.theme.ShapesV2
 import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_dark_primaryContainer
 import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onPrimary
 import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onSecondary
+import com.ife_a.compose_online_class_platform_ui.utils.listOfCategoryItemDataSample
+import com.ife_a.compose_online_class_platform_ui.utils.listOfClassDetailsSample
+import com.ife_a.compose_online_class_platform_ui.utils.listOfClassListDataSample
 import com.ife_a.compose_online_class_platform_ui.utils.sampleClassItemDataTheoryOfRelativityClass
 
 @Preview(showBackground = true, showSystemUi = true, heightDp = 800)
 @Composable
 fun DestinationClassDetail(
-    classItemData: ClassItemData = sampleClassItemDataTheoryOfRelativityClass
+    classId: String = "cat"
 ) {
+    val classItemData = listOfClassDetailsSample.find { classItemData ->
+        classItemData.classId == classId
+    }
+
     Surface(
         color = MaterialTheme.colors.background,
         modifier = Modifier
             .navigationBarsWithImePadding()
             .fillMaxHeight()
     ) {
-        LazyColumn {
-            item {
-                Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = Modifier
-                        .height(240.dp)
-                ) {
-                    Row(
+        classItemData?.let {
+            LazyColumn {
+                item {
+                    Box(
+                        contentAlignment = Alignment.Center,
                         modifier = Modifier
-                            .fillMaxWidth()
-                    ) {
-                        Image(
-                            painter = rememberImagePainter(
-                                data = classItemData.imageSrc,
-                                builder = {
-                                    crossfade(300)
-                                }
-                            ),
-                            modifier = Modifier
-                                .fillMaxSize(),
-                            contentDescription = null,
-                            contentScale = ContentScale.Crop
-                        )
-                    }
-                    Column(
-                        verticalArrangement = Arrangement.SpaceBetween,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(start = 20.dp, end = 20.dp, top = 30.dp, bottom = 20.dp)
-
+                            .height(240.dp)
                     ) {
                         Row(
-                            horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier
                                 .fillMaxWidth()
                         ) {
-                            //back button and notification button
-                            MyIconButton(Icons.Filled.ArrowLeft)
-                            MyIconButton(Icons.Outlined.Notifications)
+                            Image(
+                                painter = rememberImagePainter(
+                                    data = classItemData.imageSrc,
+                                    builder = {
+                                        crossfade(300)
+                                    }
+                                ),
+                                modifier = Modifier
+                                    .fillMaxSize(),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop
+                            )
                         }
+                        Column(
+                            verticalArrangement = Arrangement.SpaceBetween,
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(start = 20.dp, end = 20.dp, top = 30.dp, bottom = 20.dp)
+
+                        ) {
+                            Row(
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                            ) {
+                                //back button and notification button
+                                MyIconButton(Icons.Filled.ArrowLeft)
+                                MyIconButton(Icons.Outlined.Notifications)
+                            }
+                            Row(
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                            ) {
+                                //student and total play time
+                                StudentCountDisplay(
+                                    noOfStudents = classItemData.noOfStudents,
+                                    showBackground = true
+                                )
+
+                                VideoPlaytimeDisplay(
+                                    durationMillis = classItemData.classDuration,
+                                    showBackground = true
+                                )
+                            }
+                        }
+                    }
+
+                    Column(
+                        modifier = Modifier
+                            .padding(start = 20.dp, end = 20.dp, top = 10.dp, bottom = 10.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .padding(bottom = 20.dp)
+                        ) {
+                            TitleLarge(text = classItemData.classTitle)
+                        }
+
                         Row(
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically,
                             modifier = Modifier
                                 .fillMaxWidth()
                         ) {
-                            //student and total play time
-                            StudentCountDisplay(
-                                noOfStudents = classItemData.noOfStudents,
-                                showBackground = true
-                            )
-
-                            VideoPlaytimeDisplay(
-                                durationMillis = classItemData.classDuration,
-                                showBackground = true
-                            )
+                            Subtitle(text = classItemData.classTeacher)
+                            FavoriteStar(classItemData.isFavorite, onClick = {})
                         }
-                    }
-                }
 
-                Column(
-                    modifier = Modifier
-                        .padding(start = 20.dp, end = 20.dp, top = 10.dp, bottom = 10.dp)
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .padding(bottom = 20.dp)
-                    ) {
-                        TitleLarge(text = classItemData.classTitle)
-                    }
-
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    ) {
-                        Subtitle(text = classItemData.classTeacher)
-                        FavoriteStar(classItemData.isFavorite, onClick = {})
-                    }
-
-                    Surface(
-                        shape = ShapesV2.medium,
-                        color = md_theme_light_onSecondary,
-                        modifier = Modifier
-                            .padding(vertical = 20.dp)
-                    ) {
-                        Row() {
-                            Column(
-                                modifier = Modifier
-                                    .padding(vertical = 20.dp, horizontal = 14.dp)
-                            ) {
-                                Text(
-                                    text = "You will get:",
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 18.sp,
+                        Surface(
+                            shape = ShapesV2.medium,
+                            color = md_theme_light_onSecondary,
+                            modifier = Modifier
+                                .padding(vertical = 20.dp)
+                        ) {
+                            Row() {
+                                Column(
                                     modifier = Modifier
-                                        .padding(bottom = 8.dp)
-                                )
-                                ClassSellingPoints(
-                                    imageVector = Icons.Outlined.ThumbUpOffAlt,
-                                    text = "Unlimited access to every class"
-                                )
-                                ClassSellingPoints(
-                                    imageVector = Icons.Outlined.FavoriteBorder,
-                                    text = "Supportive online creative community"
-                                )
-                                ClassSellingPoints(
-                                    imageVector = Icons.Outlined.PhoneIphone,
-                                    text = "Learn offline with our app"
-                                )
+                                        .padding(vertical = 20.dp, horizontal = 14.dp)
+                                ) {
+                                    Text(
+                                        text = "You will get:",
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 18.sp,
+                                        modifier = Modifier
+                                            .padding(bottom = 8.dp)
+                                    )
+                                    ClassSellingPoints(
+                                        imageVector = Icons.Outlined.ThumbUpOffAlt,
+                                        text = "Unlimited access to every class"
+                                    )
+                                    ClassSellingPoints(
+                                        imageVector = Icons.Outlined.FavoriteBorder,
+                                        text = "Supportive online creative community"
+                                    )
+                                    ClassSellingPoints(
+                                        imageVector = Icons.Outlined.PhoneIphone,
+                                        text = "Learn offline with our app"
+                                    )
+                                }
                             }
                         }
                     }
-                }
 
-                Row(
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .padding(horizontal = 20.dp)
-
-                ) {
-                    TextButton(
-                        shape = ShapesV2.small,
-                        onClick = { },
-                        colors = ButtonDefaults.buttonColors(
-                            backgroundColor = md_theme_dark_primaryContainer
-                        ),
+                    Row(
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
-                            .fillMaxWidth()
+                            .padding(horizontal = 20.dp)
+
                     ) {
-                        Text(
-                            text = "Get started for free",
-                            textAlign = TextAlign.Center,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 18.sp,
-                            color = md_theme_light_onPrimary,
+                        TextButton(
+                            shape = ShapesV2.small,
+                            onClick = { },
+                            colors = ButtonDefaults.buttonColors(
+                                backgroundColor = md_theme_dark_primaryContainer
+                            ),
                             modifier = Modifier
-                                .padding(vertical = 6.dp)
-                        )
+                                .fillMaxWidth()
+                        ) {
+                            Text(
+                                text = "Get started for free",
+                                textAlign = TextAlign.Center,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 18.sp,
+                                color = md_theme_light_onPrimary,
+                                modifier = Modifier
+                                    .padding(vertical = 6.dp)
+                            )
+                        }
                     }
+                    ClassVideoList(videoEntries = classItemData.videos)
                 }
-                ClassVideoList(videoEntries = classItemData.videos)
             }
         }
     }

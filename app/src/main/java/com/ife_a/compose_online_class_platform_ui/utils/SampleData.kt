@@ -140,7 +140,8 @@ val samplePhotographyClassVideos = listOf<ClassVideo>(
 
 val listOfClassDetailsSample = listOf(
     sampleClassItemDataTheoryOfRelativityClass,
-    sampleClassItemDataProductivityClass
+    sampleClassItemDataProductivityClass,
+    sampleClassItemDataPhotographyClass
 )
 
 val listOfClassListDataSample = listOf(

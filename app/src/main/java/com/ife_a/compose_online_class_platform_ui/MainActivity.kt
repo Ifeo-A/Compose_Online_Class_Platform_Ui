@@ -14,9 +14,11 @@ import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.ife_a.compose_online_class_platform_ui.components.bottomBar.BottomBarCustom
 import com.ife_a.compose_online_class_platform_ui.destinations.DestinationClassDetail
+import com.ife_a.compose_online_class_platform_ui.navigation.NavigationHelper
 import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
 import com.ife_a.compose_online_class_platform_ui.utils.toast
 
@@ -51,7 +53,9 @@ class MainActivity : ComponentActivity() {
                                     .padding(bottom = scaffoldPaddingValues.calculateBottomPadding())
                             ) {
 //                                DestinationHome()
-                                DestinationClassDetail()
+//                                DestinationClassDetail()
+                                val navController = rememberNavController()
+                                NavigationHelper.SetupNavGraph(navController = navController)
                             }
                         }
                     }
