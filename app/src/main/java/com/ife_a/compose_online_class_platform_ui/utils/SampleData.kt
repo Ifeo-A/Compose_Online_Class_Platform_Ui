@@ -39,7 +39,13 @@ val sampleClassItemDataTheoryOfRelativityClass = ClassItemData(
             videoTitle = "About the Class Project",
             videoDuration = 135_000L,
             isFree = false,
-        )
+        ),
+        ClassVideo(
+            parentClassId = "cat",
+            videoTitle = "Theory deep tive",
+            videoDuration = 224_000L,
+            isFree = false,
+        ),
     ),
     categoryId = "a410"
 )

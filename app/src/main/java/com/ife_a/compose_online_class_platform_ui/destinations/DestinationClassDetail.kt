@@ -42,7 +42,8 @@ import com.ife_a.compose_online_class_platform_ui.utils.sampleClassItemDataTheor
 @Preview(showBackground = true, showSystemUi = true, heightDp = 800)
 @Composable
 fun DestinationClassDetail(
-    classId: String = "cat"
+    classId: String = "cat",
+    navBarPadding: Int = 0
 ) {
     val classItemData = listOfClassDetailsSample.find { classItemData ->
         classItemData.classId == classId
@@ -52,7 +53,7 @@ fun DestinationClassDetail(
         color = MaterialTheme.colors.background,
         modifier = Modifier
             .navigationBarsWithImePadding()
-            .fillMaxHeight()
+            .padding(bottom = navBarPadding.dp)
     ) {
         classItemData?.let {
             LazyColumn {

@@ -48,15 +48,11 @@ class MainActivity : ComponentActivity() {
                                 })
                             }
                         ) { scaffoldPaddingValues ->
-                            Box(
-                                modifier = Modifier
-                                    .padding(bottom = scaffoldPaddingValues.calculateBottomPadding())
-                            ) {
-//                                DestinationHome()
-//                                DestinationClassDetail()
-                                val navController = rememberNavController()
-                                NavigationHelper.SetupNavGraph(navController = navController)
-                            }
+                            val navController = rememberNavController()
+                            NavigationHelper.SetupNavGraph(
+                                navController = navController,
+                                navBarPadding = scaffoldPaddingValues.calculateBottomPadding().value.toInt()
+                            )
                         }
                     }
                 }
