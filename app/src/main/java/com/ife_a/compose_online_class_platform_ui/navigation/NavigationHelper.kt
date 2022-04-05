@@ -57,18 +57,6 @@ object NavigationHelper {
                                     navBarPadding = navBarPadding
                                 )
                             )
-                        },
-                        categoryClicked = { categoryId: String ->
-                            val categoryItemData = sampleListOfCategories.firstOrNull {
-                                it.categoryId == categoryId
-                            }
-
-                            categoryItemData?.let {
-                                toast(
-                                    context = navController.context,
-                                    text = "Show all ${it.categoryName}} classes - ${it.categoryId}"
-                                )
-                            }
                         }
                     )
                 }

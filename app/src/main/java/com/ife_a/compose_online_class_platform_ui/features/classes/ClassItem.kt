@@ -29,7 +29,7 @@ data class ClassItemData(
     val classTeacher: String,
     val isFavorite: Boolean = false,
     val videos: List<ClassVideo>,
-    val categoryId: CategoryItemData,
+    val categoryItemData: CategoryItemData,
 ) {
     val classDuration = videos.sumOf { it.videoDuration }
 }
@@ -58,7 +58,7 @@ fun ClassItem(
         classTeacher = "",
         isFavorite = false,
         videos = sampleTheoryOfRelativityClassVideos,
-        categoryId = sampleListOfCategories.find { it.categoryId == "scs" }!!
+        categoryItemData = sampleListOfCategories.find { it.categoryId == "scs" }!!
     ),
     onClassItemClick: (classId: String) -> Unit = {},
     onFavoriteClick: (classId: String) -> Unit = {}

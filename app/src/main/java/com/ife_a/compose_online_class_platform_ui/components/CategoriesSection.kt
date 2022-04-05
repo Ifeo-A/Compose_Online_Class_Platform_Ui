@@ -46,11 +46,3 @@ fun CategoriesSection(
         }
     }
 }
-
-//@Composable
-//fun CategoryChip(categoryItemData: CategoryItemData){
-//    val id = categoryItemData.categoryId
-//    MyChip(
-//        text = categoryItemData.categoryName,
-//    )
-//}

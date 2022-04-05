@@ -1,10 +1,12 @@
 package com.ife_a.compose_online_class_platform_ui.destinations
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -13,15 +15,23 @@ import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.ife_a.compose_online_class_platform_ui.components.CategoriesSection
 import com.ife_a.compose_online_class_platform_ui.components.ClassesSection
 import com.ife_a.compose_online_class_platform_ui.components.MyTopBar
+import com.ife_a.compose_online_class_platform_ui.features.classes.ClassItem
+import com.ife_a.compose_online_class_platform_ui.features.classes.ClassItemData
+import com.ife_a.compose_online_class_platform_ui.features.classes.ClassList
 import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfCategories
+import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfClassItemData
 import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfClassListData
 import com.ife_a.compose_online_class_platform_ui.utils.toast
+
+sealed class ClassState {
+    data class ShowClassesByCategory(val categoryId: String) : ClassState()
+    object ShowDefaultClasses : ClassState()
+}
 
 @Preview(showBackground = true, showSystemUi = false, heightDp = 800)
 @Composable
 fun DestinationHome(
     notificationButtonClicked: () -> Unit = {},
-    categoryClicked: (categoryId: String) -> Unit = {},
     viewAllButtonClicked: (sectionTitle: String) -> Unit = {},
     classItemClicked: (classId: String) -> Unit = {},
     classItemFavoriteButtonClicked: (classId: String) -> Unit = {},
@@ -30,6 +40,9 @@ fun DestinationHome(
 
     val listOfCategories = sampleListOfCategories
     val listOfClassListData = sampleListOfClassListData
+    val listOfClasses = sampleListOfClassItemData
+
+    var classesView by remember { mutableStateOf<ClassState>(ClassState.ShowDefaultClasses) }
 
     Surface(
         color = MaterialTheme.colors.background,
@@ -67,32 +80,64 @@ fun DestinationHome(
                             it.categoryName == categoryName
                         }
                         categoryItemData?.let {
-                            categoryClicked(it.categoryId)
+                            classesView = if (it.categoryId == "all") {
+                                ClassState.ShowDefaultClasses
+                            } else {
+                                ClassState.ShowClassesByCategory(it.categoryId)
+                            }
                         }
                     }
                 )
-                ClassesSection(
-                    listOfClassListData = listOfClassListData,
-                    classListItemClicked = {
-                        toast(
-                            context = context,
-                            text = "Class item with id $it clicked"
-                        )
-                        classItemClicked(it)
-                    },
-                    viewAllButtonClicked = {
-                        toast(
-                            context = context,
-                            text = "View all $it"
-                        )
-                    },
-                    classItemFavoriteButtonClicked = {
-                        toast(
-                            context = context,
-                            text = "Toggle favorite for $it"
+                when (classesView) {
+                    is ClassState.ShowDefaultClasses -> {
+                        println("Show default classes")
+                        ClassesSection(
+                            listOfClassListData = listOfClassListData,
+                            classListItemClicked = {
+                                toast(
+                                    context = context,
+                                    text = "Class item with id $it clicked"
+                                )
+                                classItemClicked(it)
+                            },
+                            viewAllButtonClicked = {
+                                toast(
+                                    context = context,
+                                    text = "View all $it"
+                                )
+                            },
+                            classItemFavoriteButtonClicked = {
+                                toast(
+                                    context = context,
+                                    text = "Toggle favorite for $it"
+                                )
+                            }
                         )
                     }
-                )
+
+                    is ClassState.ShowClassesByCategory -> {
+                        val categoryId =
+                            (classesView as ClassState.ShowClassesByCategory).categoryId
+                        println("Show classes for category $categoryId")
+
+                        val classesForCategory = listOfClasses.filter {
+                            it.categoryItemData.categoryId == categoryId
+                        }
+                        classesForCategory.forEach {
+                            println("(Class title: ${it.classTitle}, Category: ${it.categoryItemData.categoryId})")
+                        }
+                        Column() {
+                            classesForCategory.forEach { item: ClassItemData ->
+                                ClassItem(
+                                    classItemData = item,
+                                    onClassItemClick = {
+                                        classItemClicked(it)
+                                    }
+                                )
+                            }
+                        }
+                    }
+                }
             }
         }
     }
