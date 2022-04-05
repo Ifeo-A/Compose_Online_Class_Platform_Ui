@@ -50,6 +50,7 @@ val listOfImages = listOf(
 @Preview
 @Composable
 fun ClassItem(
+    modifier: Modifier = Modifier,
     classItemData: ClassItemData = ClassItemData(
         classId = "",
         imageSrc = listOfImages.random(),
@@ -67,9 +68,8 @@ fun ClassItem(
     Card(
         shape = ShapesV2.large,
         backgroundColor = md_theme_light_onPrimary,
-        modifier = Modifier
-            .size(width = 380.dp, height = 340.dp)
-            .padding(start = 8.dp, end = 8.dp),
+        modifier = modifier
+            .size(width = 380.dp, height = 340.dp),
         onClick = { onClassItemClick(classItemData.classId) },
         elevation = 4.dp
     ) {

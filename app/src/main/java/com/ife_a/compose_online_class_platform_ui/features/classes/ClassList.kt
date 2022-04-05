@@ -35,13 +35,13 @@ fun ClassList(
         modifier = Modifier
             .fillMaxWidth()
             .padding(bottom = 30.dp)
-
     ) {
         items(items = classListData.classDetails) { classDetails ->
             ClassItem(
                 classItemData = classDetails,
                 onClassItemClick = classItemClicked,
-                onFavoriteClick = classItemFavoriteButtonClicked
+                onFavoriteClick = classItemFavoriteButtonClicked,
+                modifier = Modifier.padding(start = 10.dp)
             )
         }
     }

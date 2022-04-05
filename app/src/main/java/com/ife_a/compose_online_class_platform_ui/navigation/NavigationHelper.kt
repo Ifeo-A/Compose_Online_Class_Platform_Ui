@@ -2,7 +2,6 @@ package com.ife_a.compose_online_class_platform_ui.navigation
 
 import android.os.Bundle
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.unit.Dp
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -13,9 +12,8 @@ import com.ife_a.compose_online_class_platform_ui.destinations.DestinationClassD
 import com.ife_a.compose_online_class_platform_ui.destinations.DestinationHome
 import com.ife_a.compose_online_class_platform_ui.navigation.NavigationHelper.DestinationArguments.CLASS_ID
 import com.ife_a.compose_online_class_platform_ui.navigation.NavigationHelper.DestinationArguments.NAV_BAR_PADDING
-import com.ife_a.compose_online_class_platform_ui.navigation.NavigationHelper.Destinations.*
-import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfCategories
-import com.ife_a.compose_online_class_platform_ui.utils.toast
+import com.ife_a.compose_online_class_platform_ui.navigation.NavigationHelper.Destinations.DestinationClassDetail
+import com.ife_a.compose_online_class_platform_ui.navigation.NavigationHelper.Destinations.DestinationHome
 
 object NavigationHelper {
 
@@ -50,6 +48,7 @@ object NavigationHelper {
                 route = DestinationHome.route,
                 content = {
                     DestinationHome(
+                        navBarPadding = navBarPadding,
                         classItemClicked = { classId: String ->
                             navController.navigate(
                                 route = DestinationClassDetail.supplyArguments(

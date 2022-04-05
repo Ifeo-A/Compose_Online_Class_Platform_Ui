@@ -1,7 +1,6 @@
 package com.ife_a.compose_online_class_platform_ui.destinations
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
@@ -31,6 +30,7 @@ sealed class ClassState {
 @Preview(showBackground = true, showSystemUi = false, heightDp = 800)
 @Composable
 fun DestinationHome(
+    navBarPadding: Int = 0,
     notificationButtonClicked: () -> Unit = {},
     viewAllButtonClicked: (sectionTitle: String) -> Unit = {},
     classItemClicked: (classId: String) -> Unit = {},
@@ -118,21 +118,24 @@ fun DestinationHome(
                     is ClassState.ShowClassesByCategory -> {
                         val categoryId =
                             (classesView as ClassState.ShowClassesByCategory).categoryId
-                        println("Show classes for category $categoryId")
 
                         val classesForCategory = listOfClasses.filter {
                             it.categoryItemData.categoryId == categoryId
                         }
-                        classesForCategory.forEach {
-                            println("(Class title: ${it.classTitle}, Category: ${it.categoryItemData.categoryId})")
-                        }
-                        Column() {
+
+                        Column(
+                            modifier = Modifier
+                                .padding(bottom = navBarPadding.dp)
+                        ) {
                             classesForCategory.forEach { item: ClassItemData ->
                                 ClassItem(
                                     classItemData = item,
                                     onClassItemClick = {
                                         classItemClicked(it)
-                                    }
+                                    },
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(start = 10.dp, end = 10.dp, bottom = 20.dp)
                                 )
                             }
                         }
