@@ -24,6 +24,7 @@ val sampleClassItemDataTheoryOfRelativityClass = ClassItemData(
     classId = "cat",
     imageSrc = "https://unsplash.com/photos/2Q3Ivd-HsaM/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MzV8fGNsYXNzfGVufDB8fHx8MTY0Mjc2MjAzOQ&force=true&w=640",
     noOfStudents = 83,
+    categoryId = sampleListOfCategories.find { it.categoryId == "scs" }!!,
     classTitle = "Theory of Relativity",
     classTeacher = "Diane Abbott",
     isFavorite = true,
@@ -46,14 +47,14 @@ val sampleClassItemDataTheoryOfRelativityClass = ClassItemData(
             videoDuration = 224_000L,
             isFree = false,
         ),
-    ),
-    categoryId = "a410"
+    )
 )
 
 val sampleClassItemDataProductivityClass = ClassItemData(
     classId = "dog",
     imageSrc = "https://unsplash.com/photos/w9i7wMaM3EE/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8NDJ8fGNsYXNzfGVufDB8fHx8MTY0Mjc3MTg2Mg&force=true&w=640",
     noOfStudents = 0,
+    categoryId = sampleListOfCategories.find { it.categoryId == "wri" }!!,
     classTitle = "Productivity Masterclass -Principles and Tools to Boost Your Productivity", //1hour in millis + 30mins in millis
     classTeacher = "Lindsey Donin",
     isFavorite = false,
@@ -70,14 +71,14 @@ val sampleClassItemDataProductivityClass = ClassItemData(
             videoDuration = 135_000L,
             isFree = false,
         )
-    ),
-    categoryId = "g794"
+    )
 )
 
 val sampleClassItemDataPhotographyClass = ClassItemData(
     classId = "ball",
     imageSrc = "https://unsplash.com/photos/N_aihp118p8/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8N3x8Y2xhc3N8fDB8fHx8MTY0Mjc2MjAwMw&force=true&w=640",
     noOfStudents = 2342,
+    categoryId = sampleListOfCategories.find { it.categoryId == "scs" }!!,
     classTitle = "Photography Basics",
     classTeacher = "India Malone",
     isFavorite = true,
@@ -94,8 +95,7 @@ val sampleClassItemDataPhotographyClass = ClassItemData(
             videoDuration = 135_000L,
             isFree = false,
         )
-    ),
-    categoryId = "a410"
+    )
 )
 
 // SAMPLE VIDEOS FOR A CLASS

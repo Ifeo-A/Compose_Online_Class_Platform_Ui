@@ -23,8 +23,8 @@ data class CategoryItemData(
 @Composable
 fun CategoriesSection(
     categories: List<CategoryItemData> = sampleListOfCategories,
-    viewAllButtonClicked: (buttonText: String) -> Unit = {},
-    categoryClicked: (categoryId: String) -> Unit = {}
+    viewAllButtonClicked: (sectionTitle: String) -> Unit = {},
+    categoryClicked: (categoryName: String) -> Unit = {}
 ){
     Surface(
         color = MaterialTheme.colors.background,
@@ -36,7 +36,7 @@ fun CategoriesSection(
                 viewAllButtonClicked = viewAllButtonClicked
             )
             LazyRow{
-                items(items = categories){ categoryItemData ->
+                items(items = categories) { categoryItemData ->
                     MyChip(
                         text = categoryItemData.categoryName,
                         onClick = categoryClicked
@@ -46,3 +46,11 @@ fun CategoriesSection(
         }
     }
 }
+
+//@Composable
+//fun CategoryChip(categoryItemData: CategoryItemData){
+//    val id = categoryItemData.categoryId
+//    MyChip(
+//        text = categoryItemData.categoryName,
+//    )
+//}

@@ -14,6 +14,8 @@ import com.ife_a.compose_online_class_platform_ui.destinations.DestinationHome
 import com.ife_a.compose_online_class_platform_ui.navigation.NavigationHelper.DestinationArguments.CLASS_ID
 import com.ife_a.compose_online_class_platform_ui.navigation.NavigationHelper.DestinationArguments.NAV_BAR_PADDING
 import com.ife_a.compose_online_class_platform_ui.navigation.NavigationHelper.Destinations.*
+import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfCategories
+import com.ife_a.compose_online_class_platform_ui.utils.toast
 
 object NavigationHelper {
 
@@ -55,6 +57,18 @@ object NavigationHelper {
                                     navBarPadding = navBarPadding
                                 )
                             )
+                        },
+                        categoryClicked = { categoryId: String ->
+                            val categoryItemData = sampleListOfCategories.firstOrNull {
+                                it.categoryId == categoryId
+                            }
+
+                            categoryItemData?.let {
+                                toast(
+                                    context = navController.context,
+                                    text = "Show all ${it.categoryName}} classes - ${it.categoryId}"
+                                )
+                            }
                         }
                     )
                 }

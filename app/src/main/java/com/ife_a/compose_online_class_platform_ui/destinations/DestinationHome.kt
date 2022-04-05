@@ -20,7 +20,11 @@ import com.ife_a.compose_online_class_platform_ui.utils.toast
 @Preview(showBackground = true, showSystemUi = false, heightDp = 800)
 @Composable
 fun DestinationHome(
-    classItemClicked: (classId: String) -> Unit = {}
+    notificationButtonClicked: () -> Unit = {},
+    categoryClicked: (categoryId: String) -> Unit = {},
+    viewAllButtonClicked: (sectionTitle: String) -> Unit = {},
+    classItemClicked: (classId: String) -> Unit = {},
+    classItemFavoriteButtonClicked: (classId: String) -> Unit = {},
 ) {
     val context = LocalContext.current
 
@@ -52,11 +56,19 @@ fun DestinationHome(
                             text = "View all $it clicked"
                         )
                     },
-                    categoryClicked = {
+                    categoryClicked = { categoryName: String ->
                         toast(
                             context = context,
-                            text = "Category $it clicked"
+                            text = "Category $categoryName clicked"
                         )
+
+                        // Find category item data so I can get the Id from it using the category name
+                        val categoryItemData = sampleListOfCategories.find {
+                            it.categoryName == categoryName
+                        }
+                        categoryItemData?.let {
+                            categoryClicked(it.categoryId)
+                        }
                     }
                 )
                 ClassesSection(
