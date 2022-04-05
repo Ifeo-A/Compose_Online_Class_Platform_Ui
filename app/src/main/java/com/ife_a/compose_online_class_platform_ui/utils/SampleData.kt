@@ -7,15 +7,15 @@ import com.ife_a.compose_online_class_platform_ui.features.classes.ClassVideo
 
 
 val sampleListOfCategories = listOf(
-    CategoryItemData("", "🎨 Design"),
-    CategoryItemData("", "👨‍🎨 Art"),
-    CategoryItemData("", "‍🖥 Programming"),
-    CategoryItemData("", "💻 Marketing"),
-    CategoryItemData("", "📝 Writing"),
-    CategoryItemData("", "🗿 History"),
-    CategoryItemData("", "🧮 Maths"),
-    CategoryItemData("", "🧑🏽‍ Science"),
-    CategoryItemData("", "‍📈 Statistics"),
+    CategoryItemData("des", "🎨 Design"),
+    CategoryItemData("art", "👨‍🎨 Art"),
+    CategoryItemData("prog", "‍🖥 Programming"),
+    CategoryItemData("mark", "💻 Marketing"),
+    CategoryItemData("wri", "📝 Writing"),
+    CategoryItemData("his", "🗿 History"),
+    CategoryItemData("mts", "🧮 Maths"),
+    CategoryItemData("scs", "🧑🏽‍ Science"),
+    CategoryItemData("stats", "‍📈 Statistics"),
 )
 
 // SAMPLE CLASSES
