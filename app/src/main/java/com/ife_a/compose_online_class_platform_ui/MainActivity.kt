@@ -5,19 +5,14 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.insets.ProvideWindowInsets
 import com.ife_a.compose_online_class_platform_ui.components.bottomBar.BottomBarCustom
-import com.ife_a.compose_online_class_platform_ui.destinations.DestinationClassDetail
 import com.ife_a.compose_online_class_platform_ui.navigation.NavigationHelper
 import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
 import com.ife_a.compose_online_class_platform_ui.utils.toast
@@ -33,28 +28,23 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
-
-            ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
-                AppTheme {
-                    ProvideWindowInsets {
-                        val context = LocalContext.current
-                        Scaffold(
-                            bottomBar = {
-                                BottomBarCustom(onMenuItemClicked = {
-                                    toast(
-                                        context = context,
-                                        text = "Menu $it clicked"
-                                    )
-                                })
-                            }
-                        ) { scaffoldPaddingValues ->
-                            val navController = rememberNavController()
-                            NavigationHelper.SetupNavGraph(
-                                navController = navController,
-                                navBarPadding = scaffoldPaddingValues.calculateBottomPadding().value.toInt()
+            AppTheme {
+                val context = LocalContext.current
+                Scaffold(
+                    bottomBar = {
+                        BottomBarCustom(onMenuItemClicked = {
+                            toast(
+                                context = context,
+                                text = "Menu $it clicked"
                             )
-                        }
+                        })
                     }
+                ) { scaffoldPaddingValues ->
+                    val navController = rememberNavController()
+                    NavigationHelper.SetupNavGraph(
+                        navController = navController,
+                        navBarPadding = scaffoldPaddingValues.calculateBottomPadding().value.toInt()
+                    )
                 }
             }
         }
@@ -79,11 +69,11 @@ fun shouldMakeFullScreen(
     }
 
     window.apply {
-        WindowInsetsControllerCompat(this, this.decorView).let {
-            if (hideStatusBar) it.hide(WindowInsetsCompat.Type.statusBars())
+        ViewCompat.getWindowInsetsController(this.decorView).let {
+            if (hideStatusBar) it?.hide(WindowInsetsCompat.Type.statusBars())
             if (hideNavigationBar) {
-                it.hide(WindowInsetsCompat.Type.navigationBars())
-                it.systemBarsBehavior =
+                it?.hide(WindowInsetsCompat.Type.navigationBars())
+                it?.systemBarsBehavior =
                     WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 
             }
