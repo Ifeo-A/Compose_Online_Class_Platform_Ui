@@ -73,4 +73,7 @@ dependencies {
     implementation "com.google.accompanist:accompanist-insets-ui:$accompanist_version"
     implementation "com.google.accompanist:accompanist-flowlayout:$accompanist_version"
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
+
+    // ExoPlayer
+    implementation "com.google.android.exoplayer:exoplayer:$exoPlayer_version"
 }

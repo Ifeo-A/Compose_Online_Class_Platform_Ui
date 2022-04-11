@@ -3,6 +3,7 @@ buildscript {
     ext {
         compose_version = '1.2.0-alpha01'
         accompanist_version = '0.24.0-alpha'
+        exoPlayer_version = '2.17.1'
     }
     repositories {
         google()
