@@ -39,7 +39,8 @@ import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfClassItemDat
 @Composable
 fun DestinationClassDetail(
     classId: String = "cat",
-    navBarPadding: Int = 0
+    navBarPadding: Int = 0,
+    classVideoClicked: (videoId: String) -> Unit = {}
 ) {
     val classItemData = sampleListOfClassItemData.find { classItemData ->
         classItemData.classId == classId
@@ -195,7 +196,10 @@ fun DestinationClassDetail(
                             )
                         }
                     }
-                    ClassVideoList(videoEntries = classItemData.videos)
+                    ClassVideoList(
+                        videoEntries = classItemData.videos,
+                        classVideoClicked = classVideoClicked
+                    )
                 }
             }
         }

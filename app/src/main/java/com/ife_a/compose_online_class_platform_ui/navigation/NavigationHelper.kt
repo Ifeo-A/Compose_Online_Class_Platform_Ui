@@ -10,15 +10,16 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.ife_a.compose_online_class_platform_ui.destinations.DestinationClassDetail
 import com.ife_a.compose_online_class_platform_ui.destinations.DestinationHome
+import com.ife_a.compose_online_class_platform_ui.destinations.DestinationVideo
 import com.ife_a.compose_online_class_platform_ui.navigation.NavigationHelper.DestinationArguments.CLASS_ID
 import com.ife_a.compose_online_class_platform_ui.navigation.NavigationHelper.DestinationArguments.NAV_BAR_PADDING
-import com.ife_a.compose_online_class_platform_ui.navigation.NavigationHelper.Destinations.DestinationClassDetail
-import com.ife_a.compose_online_class_platform_ui.navigation.NavigationHelper.Destinations.DestinationHome
+import com.ife_a.compose_online_class_platform_ui.navigation.NavigationHelper.DestinationArguments.VIDEO_ID
 
 object NavigationHelper {
 
     object DestinationArguments {
         const val CLASS_ID = "classId"
+        const val VIDEO_ID = "videoId"
         const val NAV_BAR_PADDING = "navBarPadding"
     }
 
@@ -28,9 +29,18 @@ object NavigationHelper {
             Destinations(route = "destinationClassDetail/{$CLASS_ID}/{${NAV_BAR_PADDING}}") {
 
             fun supplyArguments(classId: String, navBarPadding: Int): String {
-
                 return this.route
                     .replace("{$CLASS_ID}", classId)
+                    .replace("{$NAV_BAR_PADDING}", navBarPadding.toString())
+            }
+        }
+
+        object DestinationVideo :
+            Destinations(route = "destinationVideo/{$VIDEO_ID}/{${NAV_BAR_PADDING}}") {
+
+            fun supplyArguments(videoId: String, navBarPadding: Int): String {
+                return this.route
+                    .replace("{$VIDEO_ID}", videoId)
                     .replace("{$NAV_BAR_PADDING}", navBarPadding.toString())
             }
         }
@@ -41,17 +51,18 @@ object NavigationHelper {
 
         NavHost(
             navController = navController,
-            startDestination = DestinationHome.route
+            startDestination = Destinations.DestinationHome.route
         ) {
 
+            // DestinationHome
             composable(
-                route = DestinationHome.route,
+                route = Destinations.DestinationHome.route,
                 content = {
                     DestinationHome(
                         navBarPadding = navBarPadding,
                         classItemClicked = { classId: String ->
                             navController.navigate(
-                                route = DestinationClassDetail.supplyArguments(
+                                route = Destinations.DestinationClassDetail.supplyArguments(
                                     classId = classId,
                                     navBarPadding = navBarPadding
                                 )
@@ -61,8 +72,9 @@ object NavigationHelper {
                 }
             )
 
+            // DestinationClassDetail
             composable(
-                route = DestinationClassDetail.route,
+                route = Destinations.DestinationClassDetail.route,
                 arguments = listOf(
                     navArgument(name = CLASS_ID) {
                         type = NavType.StringType
@@ -75,7 +87,36 @@ object NavigationHelper {
                     backStackEntry.arguments?.let { bundle: Bundle ->
                         DestinationClassDetail(
                             classId = bundle.getString(CLASS_ID, ""),
-                            navBarPadding = bundle.getInt(NAV_BAR_PADDING, 0)
+                            navBarPadding = bundle.getInt(NAV_BAR_PADDING, 0),
+                            classVideoClicked = { videoId: String ->
+                                navController.navigate(
+                                    route = Destinations.DestinationVideo.supplyArguments(
+                                        videoId = videoId,
+                                        navBarPadding = navBarPadding
+                                    )
+                                )
+                            }
+                        )
+                    }
+                }
+            )
+
+            // DestinationVideo
+            composable(
+                route = Destinations.DestinationVideo.route,
+                arguments = listOf(
+                    navArgument(name = VIDEO_ID) {
+                        type = NavType.StringType
+                    },
+                    navArgument(name = NAV_BAR_PADDING) {
+                        type = NavType.IntType
+                    }
+                ),
+                content = { backStackEntry: NavBackStackEntry ->
+                    backStackEntry.arguments?.let { bundle: Bundle ->
+                        DestinationVideo(
+                            videoId = bundle.getString(VIDEO_ID, ""),
+                            navBarPadding = bundle.getInt(NAV_BAR_PADDING, 0),
                         )
                     }
                 }

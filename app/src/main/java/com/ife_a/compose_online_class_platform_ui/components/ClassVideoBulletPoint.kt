@@ -27,7 +27,6 @@ fun ClassVideoBulletPoint(
     text: String = "4 - How to read 1:45"
 ) {
     Surface(
-        onClick = {},
         shape = RoundedCornerShape(8.dp),
         color = md_theme_light_onSecondary,
         modifier = Modifier

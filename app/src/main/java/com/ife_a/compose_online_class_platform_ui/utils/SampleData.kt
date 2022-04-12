@@ -19,6 +19,102 @@ val sampleListOfCategories = listOf(
     CategoryItemData("stats", "‍📈 Statistics"),
 )
 
+// SAMPLE VIDEOS FOR A CLASS
+val sampleTheoryOfRelativityClassVideos = listOf<ClassVideo>(
+    ClassVideo(
+        parentClassId = "cat",
+        videoId = "mohytor-g4tdg",
+        videoTitle = "Welcome to the Class",
+        videoUrl = "",
+        videoDuration = 210_000L,
+        isFree = true,
+    ),
+    ClassVideo(
+        parentClassId = "cat",
+        videoId = "lk[pkir94-24",
+        videoTitle = "About the Class Project",
+        videoUrl = "",
+        videoDuration = 135_000L,
+        isFree = false,
+    )
+)
+
+val sampleProductivityClassVideos = listOf<ClassVideo>(
+    ClassVideo(
+        parentClassId = "dog",
+        videoId = "rtrtg-tgth",
+        videoTitle = "Welcome to the Class",
+        videoUrl = "",
+        videoDuration = 210_000L,
+        isFree = true,
+    ),
+    ClassVideo(
+        parentClassId = "dog",
+        videoId = "kmbopo-cvn",
+        videoTitle = "About the Class Project",
+        videoUrl = "",
+        videoDuration = 135_000L,
+        isFree = false,
+    ),
+    ClassVideo(
+        parentClassId = "dog",
+        videoId = "ergerg-83620",
+        videoTitle = "Healthy routines",
+        videoUrl = "",
+        videoDuration = 224_000L,
+        isFree = false,
+    ),
+    ClassVideo(
+        parentClassId = "dog",
+        videoId = "loii-33f3g",
+        videoTitle = "10 ways to learn faster",
+        videoUrl = "",
+        videoDuration = 224_000L,
+        isFree = false,
+    ),
+    ClassVideo(
+        parentClassId = "dog",
+        videoId = "rgeo0534-24",
+        videoTitle = "Why you need more sleep",
+        videoUrl = "",
+        videoDuration = 224_000L,
+        isFree = false,
+    ),
+    ClassVideo(
+        parentClassId = "dog",
+        videoId = "ncigoslk-947",
+        videoTitle = "How to read",
+        videoUrl = "",
+        videoDuration = 224_000L,
+        isFree = false,
+    ),
+)
+
+val samplePhotographyClassVideos = listOf<ClassVideo>(
+    ClassVideo(
+        parentClassId = "fish",
+        videoId = "ljnno0i-9rikledg",
+        videoTitle = "Photography class 1",
+        videoUrl = "",
+        videoDuration = 210_000L,
+        isFree = true,
+    ),
+    ClassVideo(
+        parentClassId = "fish",
+        videoId = "14309fjv-sg4",
+        videoTitle = "Photography class 2",
+        videoUrl = "",
+        videoDuration = 135_000L,
+        isFree = false,
+    )
+)
+
+val sampleListAllClassVideos = listOf<ClassVideo>(
+    *sampleTheoryOfRelativityClassVideos.toTypedArray(),
+    *sampleProductivityClassVideos.toTypedArray(),
+    *samplePhotographyClassVideos.toTypedArray()
+)
+
 // SAMPLE CLASSES
 // Sample ClassItemData for Theory of relativity classes
 val sampleClassItemDataTheoryOfRelativityClass = ClassItemData(
@@ -29,26 +125,7 @@ val sampleClassItemDataTheoryOfRelativityClass = ClassItemData(
     classTitle = "Theory of Relativity",
     classTeacher = "Diane Abbott",
     isFavorite = true,
-    videos = listOf<ClassVideo>(
-        ClassVideo(
-            parentClassId = "cat",
-            videoTitle = "Welcome to the Class",
-            videoDuration = 210_000L,
-            isFree = true,
-        ),
-        ClassVideo(
-            parentClassId = "cat",
-            videoTitle = "About the Class Project",
-            videoDuration = 135_000L,
-            isFree = false,
-        ),
-        ClassVideo(
-            parentClassId = "cat",
-            videoTitle = "Theory deep tive",
-            videoDuration = 224_000L,
-            isFree = false,
-        ),
-    )
+    videos = sampleTheoryOfRelativityClassVideos
 )
 
 val sampleClassItemDataProductivityClass = ClassItemData(
@@ -59,90 +136,18 @@ val sampleClassItemDataProductivityClass = ClassItemData(
     classTitle = "Productivity Masterclass -Principles and Tools to Boost Your Productivity", //1hour in millis + 30mins in millis
     classTeacher = "Lindsey Donin",
     isFavorite = false,
-    videos = listOf<ClassVideo>(
-        ClassVideo(
-            parentClassId = "dog",
-            videoTitle = "Productivity class 1",
-            videoDuration = 210_000L,
-            isFree = true,
-        ),
-        ClassVideo(
-            parentClassId = "cat",
-            videoTitle = "Productivity class 2",
-            videoDuration = 135_000L,
-            isFree = false,
-        )
-    )
+    videos = sampleProductivityClassVideos
 )
 
 val sampleClassItemDataPhotographyClass = ClassItemData(
-    classId = "ball",
+    classId = "fish",
     imageSrc = "https://unsplash.com/photos/N_aihp118p8/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8N3x8Y2xhc3N8fDB8fHx8MTY0Mjc2MjAwMw&force=true&w=640",
     noOfStudents = 2342,
     categoryItemData = sampleListOfCategories.find { it.categoryId == "scs" }!!,
     classTitle = "Photography Basics",
     classTeacher = "India Malone",
     isFavorite = true,
-    videos = listOf<ClassVideo>(
-        ClassVideo(
-            parentClassId = "fish",
-            videoTitle = "Photography class 1",
-            videoDuration = 210_000L,
-            isFree = true,
-        ),
-        ClassVideo(
-            parentClassId = "fish",
-            videoTitle = "Photography class 2",
-            videoDuration = 135_000L,
-            isFree = false,
-        )
-    )
-)
-
-// SAMPLE VIDEOS FOR A CLASS
-val sampleTheoryOfRelativityClassVideos = listOf<ClassVideo>(
-    ClassVideo(
-        parentClassId = "cat",
-        videoTitle = "Welcome to the Class",
-        videoDuration = 210_000L,
-        isFree = true,
-    ),
-    ClassVideo(
-        parentClassId = "cat",
-        videoTitle = "About the Class Project",
-        videoDuration = 135_000L,
-        isFree = false,
-    )
-)
-
-val sampleProductivityClassVideos = listOf<ClassVideo>(
-    ClassVideo(
-        parentClassId = "dog",
-        videoTitle = "Productivity class 1",
-        videoDuration = 210_000L,
-        isFree = true,
-    ),
-    ClassVideo(
-        parentClassId = "dog",
-        videoTitle = "Productivity class 2",
-        videoDuration = 135_000L,
-        isFree = false,
-    )
-)
-
-val samplePhotographyClassVideos = listOf<ClassVideo>(
-    ClassVideo(
-        parentClassId = "fish",
-        videoTitle = "Photography class 1",
-        videoDuration = 210_000L,
-        isFree = true,
-    ),
-    ClassVideo(
-        parentClassId = "fish",
-        videoTitle = "Photography class 2",
-        videoDuration = 135_000L,
-        isFree = false,
-    )
+    videos = samplePhotographyClassVideos
 )
 
 val sampleListOfClassItemData = listOf(
