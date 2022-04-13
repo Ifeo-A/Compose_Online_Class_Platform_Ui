@@ -23,9 +23,17 @@ val sampleListOfCategories = listOf(
 val sampleTheoryOfRelativityClassVideos = listOf<ClassVideo>(
     ClassVideo(
         parentClassId = "cat",
+        videoId = "ergfdgp-ergwr34",
+        videoTitle = "Class intro",
+        videoUrl = "https://cdn.videvo.net/videvo_files/video/free/2021-08/large_watermarked/210722_04_Festival_4k_018_preview.mp4",
+        videoDuration = 210_000L,
+        isFree = true,
+    ),
+    ClassVideo(
+        parentClassId = "cat",
         videoId = "mohytor-g4tdg",
-        videoTitle = "Welcome to the Class",
-        videoUrl = "",
+        videoTitle = "Preparation",
+        videoUrl = "https://cdn.videvo.net/videvo_files/video/free/2020-01/large_watermarked/191126_2_HD_Party_Cropped_02_preview.mp4",
         videoDuration = 210_000L,
         isFree = true,
     ),
@@ -33,7 +41,7 @@ val sampleTheoryOfRelativityClassVideos = listOf<ClassVideo>(
         parentClassId = "cat",
         videoId = "lk[pkir94-24",
         videoTitle = "About the Class Project",
-        videoUrl = "",
+        videoUrl = "https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4",
         videoDuration = 135_000L,
         isFree = false,
     )
