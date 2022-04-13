@@ -139,7 +139,10 @@ fun DestinationClassDetail(
                             modifier = Modifier
                                 .padding(vertical = 20.dp)
                         ) {
-                            Row() {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                            ) {
                                 Column(
                                     modifier = Modifier
                                         .padding(vertical = 20.dp, horizontal = 14.dp)
