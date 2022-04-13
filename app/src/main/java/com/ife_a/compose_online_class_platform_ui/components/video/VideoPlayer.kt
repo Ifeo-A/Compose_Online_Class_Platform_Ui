@@ -1,15 +1,9 @@
 package com.ife_a.compose_online_class_platform_ui.components.video
 
 import android.content.Context
-import android.provider.MediaStore
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -19,17 +13,48 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.ui.StyledPlayerView
+
 
 @Composable
 fun VideoPlayer(
     videoUrls: List<String>,
     /** Indicates which media item in the playlist to play first */
     mediaItemIndex: Int,
-    modifier: Modifier
+    videoIsBuffering: (isBuffering: Boolean) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
+
+    val videoStateListener: Player.Listener = object : Player.Listener {
+        override fun onPlaybackStateChanged(playbackState: Int) {
+            val stateString: String = when (playbackState) {
+                ExoPlayer.STATE_IDLE -> {
+                    videoIsBuffering(true)
+                    "ExoPlayer.STATE_IDLE"
+                }
+                ExoPlayer.STATE_BUFFERING -> {
+                    videoIsBuffering(true)
+                    "ExoPlayer.STATE_BUFFERING"
+                }
+                ExoPlayer.STATE_READY -> {
+                    videoIsBuffering(false)
+                    "ExoPlayer.STATE_READY"
+                }
+                ExoPlayer.STATE_ENDED -> {
+                    videoIsBuffering(false)
+                    "ExoPlayer.STATE_ENDED"
+                }
+                else -> {
+                    videoIsBuffering(true)
+                    "UNKNOWN_STATE"
+                }
+            }
+            println("Video state: $stateString")
+        }
+    }
 
     var currentPlaybackPosition by rememberSaveable { mutableStateOf(0L) }
     var currentMediaItemIndex by rememberSaveable { mutableStateOf(mediaItemIndex) }
@@ -45,6 +70,7 @@ fun VideoPlayer(
             .setTrackSelector(trackSelector)
             .build().apply {
                 videoPlaylist.forEach { mediaItem -> this.addMediaItem(mediaItem) }
+                addListener(videoStateListener)
                 seekTo(currentMediaItemIndex, currentPlaybackPosition)
                 playWhenReady = true
                 prepare()
