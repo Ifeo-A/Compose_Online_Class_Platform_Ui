@@ -1,8 +1,7 @@
-package com.ife_a.compose_online_class_platform_ui.destinations
+package com.ife_a.compose_online_class_platform_ui.destinations.destinationHome
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.*
@@ -11,12 +10,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.insets.navigationBarsWithImePadding
-import com.ife_a.compose_online_class_platform_ui.components.CategoriesSection
-import com.ife_a.compose_online_class_platform_ui.components.ClassesSection
-import com.ife_a.compose_online_class_platform_ui.components.MyTopBar
+import com.ife_a.compose_online_class_platform_ui.components.topBar.MyTopBar
 import com.ife_a.compose_online_class_platform_ui.features.classes.ClassItem
 import com.ife_a.compose_online_class_platform_ui.features.classes.ClassItemData
-import com.ife_a.compose_online_class_platform_ui.features.classes.ClassList
 import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfCategories
 import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfClassItemData
 import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfClassListData

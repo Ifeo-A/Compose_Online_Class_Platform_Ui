@@ -1,4 +1,4 @@
-package com.ife_a.compose_online_class_platform_ui.components
+package com.ife_a.compose_online_class_platform_ui.features.classes
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -15,7 +15,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ife_a.compose_online_class_platform_ui.features.classes.ClassVideo
 import com.ife_a.compose_online_class_platform_ui.utils.getPlayTimeFromMillis
 import com.ife_a.compose_online_class_platform_ui.utils.sampleProductivityClassVideos
 

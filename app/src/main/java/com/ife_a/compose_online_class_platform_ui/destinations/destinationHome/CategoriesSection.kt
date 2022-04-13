@@ -1,4 +1,4 @@
-package com.ife_a.compose_online_class_platform_ui.components
+package com.ife_a.compose_online_class_platform_ui.destinations.destinationHome
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding

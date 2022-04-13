@@ -1,4 +1,4 @@
-package com.ife_a.compose_online_class_platform_ui.components
+package com.ife_a.compose_online_class_platform_ui.components.topBar
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme

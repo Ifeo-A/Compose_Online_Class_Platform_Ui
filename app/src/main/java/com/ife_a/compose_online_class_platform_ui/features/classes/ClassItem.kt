@@ -12,14 +12,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
-import com.ife_a.compose_online_class_platform_ui.components.CategoryItemData
 import com.ife_a.compose_online_class_platform_ui.components.favorite.FavoriteStar
 import com.ife_a.compose_online_class_platform_ui.components.text.TitleMedium
+import com.ife_a.compose_online_class_platform_ui.destinations.destinationHome.CategoryItemData
 import com.ife_a.compose_online_class_platform_ui.ui.theme.ShapesV2
 import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onPrimary
 import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfCategories
 import com.ife_a.compose_online_class_platform_ui.utils.sampleTheoryOfRelativityClassVideos
-
 
 data class ClassItemData(
     val classId: String,

@@ -1,6 +1,6 @@
 package com.ife_a.compose_online_class_platform_ui.utils
 
-import com.ife_a.compose_online_class_platform_ui.components.CategoryItemData
+import com.ife_a.compose_online_class_platform_ui.destinations.destinationHome.CategoryItemData
 import com.ife_a.compose_online_class_platform_ui.features.classes.ClassItemData
 import com.ife_a.compose_online_class_platform_ui.features.classes.ClassListData
 import com.ife_a.compose_online_class_platform_ui.features.classes.ClassVideo

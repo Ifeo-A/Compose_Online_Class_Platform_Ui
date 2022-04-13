@@ -1,4 +1,4 @@
-package com.ife_a.compose_online_class_platform_ui.destinations
+package com.ife_a.compose_online_class_platform_ui.destinations.destinationClassDetail
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -21,8 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.google.accompanist.insets.navigationBarsWithImePadding
-import com.ife_a.compose_online_class_platform_ui.components.ClassSellingPoints
-import com.ife_a.compose_online_class_platform_ui.components.ClassVideoList
+import com.ife_a.compose_online_class_platform_ui.features.classes.ClassVideoList
 import com.ife_a.compose_online_class_platform_ui.components.buttons.MyIconButton
 import com.ife_a.compose_online_class_platform_ui.components.favorite.FavoriteStar
 import com.ife_a.compose_online_class_platform_ui.components.text.Subtitle
