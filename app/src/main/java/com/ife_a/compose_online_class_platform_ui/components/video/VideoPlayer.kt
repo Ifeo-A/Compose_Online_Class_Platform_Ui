@@ -13,23 +13,37 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.MediaMetadata
 import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.source.TrackGroupArray
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
+import com.google.android.exoplayer2.trackselection.TrackSelectionArray
 import com.google.android.exoplayer2.ui.StyledPlayerView
+import com.ife_a.compose_online_class_platform_ui.features.classes.ClassVideo
 
 
 @Composable
 fun VideoPlayer(
-    videoUrls: List<String>,
+    mediaItems: List<MediaItem>,
     /** Indicates which media item in the playlist to play first */
     mediaItemIndex: Int,
     videoIsBuffering: (isBuffering: Boolean) -> Unit,
+    videoTrackChanged: (mediaId: String) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
 
+    var currentPlaybackPosition by rememberSaveable { mutableStateOf(0L) }
+    var currentMediaItemIndex by rememberSaveable { mutableStateOf(mediaItemIndex) }
+
+    val trackSelector = DefaultTrackSelector(context).apply {
+        setParameters(buildUponParameters().setMaxVideoSizeSd())
+    }
+
     val videoStateListener: Player.Listener = object : Player.Listener {
+
         override fun onPlaybackStateChanged(playbackState: Int) {
+
             val stateString: String = when (playbackState) {
                 ExoPlayer.STATE_IDLE -> {
                     videoIsBuffering(true)
@@ -54,22 +68,24 @@ fun VideoPlayer(
             }
             println("Video state: $stateString")
         }
+
+        override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
+            val currentMediaItem = mediaItems.find {
+                it.mediaMetadata.displayTitle == mediaItem?.mediaId
+            }
+            currentMediaItemIndex = mediaItems.indexOf(currentMediaItem)
+            currentMediaItem?.mediaId?.let { mediaId: String ->
+                videoTrackChanged(mediaId)
+            }
+            println("Media item changed to index [$currentMediaItemIndex]: ${mediaItem?.mediaMetadata?.displayTitle}")
+        }
     }
-
-    var currentPlaybackPosition by rememberSaveable { mutableStateOf(0L) }
-    var currentMediaItemIndex by rememberSaveable { mutableStateOf(mediaItemIndex) }
-
-    val trackSelector = DefaultTrackSelector(context).apply {
-        setParameters(buildUponParameters().setMaxVideoSizeSd())
-    }
-
-    val videoPlaylist = videoUrls.map { videoUrl -> MediaItem.fromUri(videoUrl) }
 
     val exoPlayer: ExoPlayer = remember {
         ExoPlayer.Builder(context)
             .setTrackSelector(trackSelector)
             .build().apply {
-                videoPlaylist.forEach { mediaItem -> this.addMediaItem(mediaItem) }
+                mediaItems.forEach { mediaItem -> this.addMediaItem(mediaItem) }
                 addListener(videoStateListener)
                 seekTo(currentMediaItemIndex, currentPlaybackPosition)
                 playWhenReady = true
