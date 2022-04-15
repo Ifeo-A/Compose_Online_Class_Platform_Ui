@@ -24,11 +24,10 @@ import com.ife_a.compose_online_class_platform_ui.utils.sampleClassItemDataProdu
 import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfClassItemData
 
 @OptIn(ExperimentalMaterialApi::class)
-@Preview(heightDp = 600, widthDp = 300)
 @Composable
 fun DestinationVideo(
-    videoId: String = sampleClassItemDataProductivityClass.videos.first().videoId,
-    videoClicked: () -> Unit = {},
+    videoId: String,
+    videoClicked: () -> Unit,
     navBarPadding: Int = 0
 ) {
 
@@ -105,4 +104,14 @@ fun DestinationVideo(
             }
         }
     }
+}
+
+@Preview(heightDp = 600, widthDp = 300)
+@Composable
+fun PreviewDestinationVideo() {
+    DestinationVideo(
+        videoId = sampleClassItemDataProductivityClass.videos.first().videoId,
+        videoClicked = {},
+        navBarPadding = 0
+    )
 }

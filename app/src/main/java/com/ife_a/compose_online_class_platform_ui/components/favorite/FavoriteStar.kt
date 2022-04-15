@@ -10,13 +10,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 
-@Preview(showBackground = true)
 @Composable
 fun FavoriteStar(
     isFavorite: Boolean = true,
-    onClick: ()->Unit = {}
-){
+    onClick: () -> Unit = {}
+) {
     Image(
         imageVector = if (isFavorite) {
             Icons.Filled.Star
@@ -31,4 +32,26 @@ fun FavoriteStar(
             onClick()
         }
     )
+}
+
+data class FavoriteStarPreviewData(
+    val isFavorite: Boolean,
+    val onClick: () -> Unit = {}
+)
+
+class FavoriteStarPreviewParameterProvider : PreviewParameterProvider<FavoriteStarPreviewData> {
+    override val values: Sequence<FavoriteStarPreviewData> =
+        sequenceOf(
+            FavoriteStarPreviewData(isFavorite = true),
+            FavoriteStarPreviewData(isFavorite = false),
+        )
+}
+
+@Preview(name = "Favorite star previews", showBackground = true, widthDp = 30, heightDp = 30)
+@Composable
+fun PreviewMyFavoriteStar(
+    @PreviewParameter(FavoriteStarPreviewParameterProvider::class)
+    previewData: FavoriteStarPreviewData
+) {
+    FavoriteStar(isFavorite = previewData.isFavorite)
 }

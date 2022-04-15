@@ -1,10 +1,22 @@
 package com.ife_a.compose_online_class_platform_ui.utils
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.School
+import androidx.compose.material.icons.filled.Star
+import com.ife_a.compose_online_class_platform_ui.components.bottomBar.MenuData
 import com.ife_a.compose_online_class_platform_ui.destinations.destinationHome.CategoryItemData
 import com.ife_a.compose_online_class_platform_ui.features.classes.ClassItemData
 import com.ife_a.compose_online_class_platform_ui.features.classes.ClassListData
 import com.ife_a.compose_online_class_platform_ui.features.classes.ClassVideo
 
+val sampleListOfMenuItems = listOf(
+    MenuData(icon = Icons.Filled.Home, "Home"),
+    MenuData(icon = Icons.Filled.School, "Browse"),
+    MenuData(icon = Icons.Filled.Star, "Saved"),
+    MenuData(icon = Icons.Filled.Person, "Profile"),
+)
 
 val sampleListOfCategories = listOf(
     CategoryItemData("all", "☂️ All"),

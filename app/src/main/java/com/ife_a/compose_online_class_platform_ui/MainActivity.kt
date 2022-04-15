@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import com.ife_a.compose_online_class_platform_ui.components.bottomBar.BottomBarCustom
 import com.ife_a.compose_online_class_platform_ui.navigation.NavigationHelper
 import com.ife_a.compose_online_class_platform_ui.ui.theme.AppTheme
+import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfMenuItems
 import com.ife_a.compose_online_class_platform_ui.utils.toast
 
 class MainActivity : ComponentActivity() {
@@ -32,12 +33,14 @@ class MainActivity : ComponentActivity() {
                 val context = LocalContext.current
                 Scaffold(
                     bottomBar = {
-                        BottomBarCustom(onMenuItemClicked = {
-                            toast(
-                                context = context,
-                                text = "Menu $it clicked"
-                            )
-                        })
+                        BottomBarCustom(
+                            menuItems = sampleListOfMenuItems,
+                            onMenuItemClicked = {
+                                toast(
+                                    context = context,
+                                    text = "Menu $it clicked"
+                                )
+                            })
                     }
                 ) { scaffoldPaddingValues ->
                     val navController = rememberNavController()

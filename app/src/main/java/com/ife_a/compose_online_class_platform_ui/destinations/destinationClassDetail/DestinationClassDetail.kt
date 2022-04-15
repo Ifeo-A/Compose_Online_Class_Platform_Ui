@@ -17,6 +17,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
@@ -34,10 +36,9 @@ import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onPrim
 import com.ife_a.compose_online_class_platform_ui.ui.theme.md_theme_light_onSecondary
 import com.ife_a.compose_online_class_platform_ui.utils.sampleListOfClassItemData
 
-@Preview(showBackground = true, showSystemUi = true, heightDp = 800)
 @Composable
 fun DestinationClassDetail(
-    classId: String = "cat",
+    classId: String,
     navBarPadding: Int = 0,
     classVideoClicked: (videoId: String) -> Unit = {}
 ) {
@@ -206,5 +207,43 @@ fun DestinationClassDetail(
             }
         }
     }
+}
+
+data class DestinationClassDetailData(
+    val classId: String,
+    val navBarPadding: Int,
+    val classVideoClicked: (videoId: String) -> Unit
+)
+
+class DestinationClassDetailDataParameterProvider :
+    PreviewParameterProvider<DestinationClassDetailData> {
+
+    override val values: Sequence<DestinationClassDetailData>
+        get() = sequenceOf<DestinationClassDetailData>(
+            DestinationClassDetailData(
+                classId = "cat",
+                navBarPadding = 0,
+                classVideoClicked = {}
+            ),
+            DestinationClassDetailData(
+                classId = "dog",
+                navBarPadding = 0,
+                classVideoClicked = {}
+            )
+        )
+}
+
+@Preview(showBackground = true, showSystemUi = true, heightDp = 800)
+@Composable
+fun PreviewDestinationClassDetail(
+    @PreviewParameter(DestinationClassDetailDataParameterProvider::class)
+    previewData: DestinationClassDetailData
+) {
+    DestinationClassDetail(
+        classId = previewData.classId,
+        navBarPadding = previewData.navBarPadding,
+        classVideoClicked = previewData.classVideoClicked
+
+    )
 }
 

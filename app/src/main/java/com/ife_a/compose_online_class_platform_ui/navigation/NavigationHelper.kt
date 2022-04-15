@@ -117,6 +117,7 @@ object NavigationHelper {
                         DestinationVideo(
                             videoId = bundle.getString(VIDEO_ID, ""),
                             navBarPadding = bundle.getInt(NAV_BAR_PADDING, 0),
+                            videoClicked = {}
                         )
                     }
                 }
