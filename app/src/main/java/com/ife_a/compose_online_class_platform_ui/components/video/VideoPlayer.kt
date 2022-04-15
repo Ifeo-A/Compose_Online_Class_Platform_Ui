@@ -13,13 +13,9 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.MediaMetadata
 import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.source.TrackGroupArray
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray
 import com.google.android.exoplayer2.ui.StyledPlayerView
-import com.ife_a.compose_online_class_platform_ui.features.classes.ClassVideo
 
 
 @Composable
@@ -71,13 +67,19 @@ fun VideoPlayer(
 
         override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
             val currentMediaItem = mediaItems.find {
-                it.mediaMetadata.displayTitle == mediaItem?.mediaMetadata?.displayTitle
+                it.mediaId == mediaItem?.mediaId
             }
+
             currentMediaItemIndex = mediaItems.indexOf(currentMediaItem)
+
             currentMediaItem?.mediaId?.let { mediaId: String ->
                 videoTrackChanged(mediaId)
             }
-            println("Media item changed to index [$currentMediaItemIndex]: ${mediaItem?.mediaMetadata?.displayTitle}")
+
+            println(
+                "Media item changed to index [$currentMediaItemIndex]: " +
+                        "${mediaItem?.mediaMetadata?.displayTitle}"
+            )
         }
     }
 
@@ -103,7 +105,7 @@ fun VideoPlayer(
 
         override fun onStop(owner: LifecycleOwner) {
             super.onStop(owner)
-            exoPlayer.release()
+            exoPlayer.pause()
         }
     })
 
