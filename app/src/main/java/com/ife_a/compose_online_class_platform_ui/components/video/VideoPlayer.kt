@@ -71,7 +71,7 @@ fun VideoPlayer(
 
         override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
             val currentMediaItem = mediaItems.find {
-                it.mediaMetadata.displayTitle == mediaItem?.mediaId
+                it.mediaMetadata.displayTitle == mediaItem?.mediaMetadata?.displayTitle
             }
             currentMediaItemIndex = mediaItems.indexOf(currentMediaItem)
             currentMediaItem?.mediaId?.let { mediaId: String ->
