@@ -9,3 +9,9 @@ Based on [this design](https://dribbble.com/shots/16049555-Online-Class-Platform
 - Navigate with bottom bar
 - Create bottom bar destinations
 - Make search bar functional
+
+# **Screenshots**
+
+![img.png](readme-images/home.png)
+![img.png](readme-images/class-details.png)
+![img.png](readme-images/video-player.png)

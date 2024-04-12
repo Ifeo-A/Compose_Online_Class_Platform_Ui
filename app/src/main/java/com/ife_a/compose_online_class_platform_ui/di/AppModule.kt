@@ -2,10 +2,14 @@ package com.ife_a.compose_online_class_platform_ui.di
 
 import android.content.Context
 import androidx.room.Room
+import com.ife_a.compose_online_class_platform_ui.domain.CategoryRepository
+import com.ife_a.compose_online_class_platform_ui.domain.CategoryRepositoryImpl
 import com.ife_a.data.db.CategoryItemDataTypeConverter
 import com.ife_a.data.db.ClassVideoEntityTypeConverter
 import com.ife_a.data.db.OnlineClassDatabase
+import com.ife_a.data.db.dao.CategoryEntityDao
 import com.squareup.moshi.Moshi
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,13 +36,21 @@ object AppModule {
             .addTypeConverter(CategoryItemDataTypeConverter(moshi = moshi))
             .fallbackToDestructiveMigration().build()
     }
-//
-//    @Singleton
-//    @Provides
-//    fun provideEntityCaseStudyDao(
-//        database: IfeKinCarterCodingChallengeDatabase
-//    ): CaseStudyEntityDao {
-//        return database.entityCaseStudyDao()
-//    }
+
+    @Singleton
+    @Provides
+    fun provideCategoryRepositoryDao(
+        database: OnlineClassDatabase
+    ): CategoryEntityDao {
+        return database.categoryEntityDao()
+    }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class CategoriesModule {
+
+    @Binds
+    abstract fun provideCategoryRepository(categoryRepository: CategoryRepositoryImpl): CategoryRepository
 
 }
