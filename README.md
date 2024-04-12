@@ -13,5 +13,6 @@ Based on [this design](https://dribbble.com/shots/16049555-Online-Class-Platform
 # **Screenshots**
 
 ![img.png](readme-images/home.png)
+![img.png](readme-images/home-scrolled.png)
 ![img.png](readme-images/class-details.png)
 ![img.png](readme-images/video-player.png)
